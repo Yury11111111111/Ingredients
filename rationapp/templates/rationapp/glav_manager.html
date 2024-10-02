@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width? initial-scale=1.0">
+    <title>Главная менеджера</title>
+    <link rel="stylesheet" href="{% static 'CSS/glav_manager.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="extra-block">
+            <div class="menu">
+                <div class="menu__title logo-block">
+                    <span class="logo-block__text">Taste</span>
+                </div>
+                <div class="menu__title">
+                    <a href="main" class="menu__link" tabindex = "1">Главная</a>
+                </div>
+                <div class="menu__title">
+                    <a href="arhiv" class="menu__link" tabindex = "2">Архив</a>
+                </div>
+                <div class="menu__title">
+                    <a href="main/log_dev" class="menu__link" tabindex = "3">Редактор</a>
+                </div>
+                <div class="menu__title">
+                    <a href="" class="menu__link" tabindex = "4">Профиль</a>
+                </div>
+                <img src="{% static 'img/question.svg' %}" alt="" class="menu__img menu__img_margin-88">
+            <!-- menu_link -->
+            </div>
+            <div class="page-name">
+                <img src="{% static 'img/profile.png' %}" alt="profile" class="page-name__img">
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="wrapper">
+            <div class="Big_name1">ТЕКУЩИЕ ЗАКАЗЫ</div>
+            <div class="Big_name2">ПОСЛЕДНИЕ РАЦИОНЫ </div>
+            <div class="racion">
+                <div class="racion__main-block block-main">
+                    <a href="main/ration" class="block-main__subblock">Новый Заказ</a>
+                </div>
+                <a href="main/ration" class="racion__child-block block-child">
+                    <div class="block-child__subblock">Название заказа
+                        <label class="sp_1">Организация-Заказчик</label>
+                        <label class="sp_1">ФИО Исполнителя</label>
+                        <label class="sp_2">21-02-2021</label>
+                    </div>
+                </a>
+                <a href="main/ration" class="racion__child-block block-child">
+                    <div class="block-child__subblock">Название заказа 2
+                        <label class="sp_1">Организация-Заказчик</label>
+                        <label class="sp_1">ФИО Исполнителя</label>
+                        <label class="sp_2">21-02-2021</label>
+                    </div>
+                </a>
+            </div>
+            <div class="food-composition">
+                <div class="food-composition__child-block  block-child">
+                    <div class="block-child__subblock">Рацион 1
+                        <span class="sp_1">Организация-Заказчик</span>
+                        <span class="sp_1">ФИО Исполнителя</span>
+                        <span class="sp_2">21-02-2021</span>
+                    </div>
+                    <a href="main/ration">
+                        <img src="{% static 'img/Vector.svg' %}" alt="profile" class="page-name__img2">
+                    </a>
+                </div>
+                <div class="food-composition__child-block  block-child">
+                    <div class="block-child__subblock">Рацион 2
+                        <span class="sp_1">Организация-Заказчик</span>
+                        <span class="sp_1">ФИО Исполнителя</span>
+                        <span class="sp_2">21-02-2021</span>
+                    </div>
+                    <a href="main/ration">
+                        <img src="{% static 'img/Vector.svg' %}" alt="profile" class="page-name__img2">
+                    </a>
+                </div>
+                <div class="food-composition__child-block  block-child">
+                    <div class="block-child__subblock">Рацион 3
+                        <span class="sp_1">Организация-Заказчик</span>
+                        <span class="sp_1">ФИО Исполнителя</span>
+                        <span class="sp_2">21-02-2021</span>
+                    </div>
+                    <a href="main/ration">
+                        <img src="{% static 'img/Vector.svg' %}" alt="profile" class="page-name__img2">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="{% static 'JS/glav_manager.js' %}">
+    </script>
+</body>
+</html>

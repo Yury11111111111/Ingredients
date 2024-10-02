@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width? initial-scale=1.0">
+    <title>Редактирование диеты</title>
+    <link rel="stylesheet" href="{% static 'CSS/redact_diet.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="extra-block">
+            <div class="menu">
+                <div class="menu__title logo-block">
+                    <span class="logo-block__text">Taste</span>
+                </div>
+                <div class="menu__title">
+                    <a href="main" class="menu__link" tabindex = "1">Главная</a>
+                </div>
+                <div class="menu__title">
+                    <a href="" class="menu__link" tabindex = "2">Архив</a>
+                </div>
+                <div class="menu__title">
+                    <a href="log_dev" class="menu__link" tabindex = "3">Редактор</a>
+                </div>
+                <div class="menu__title">
+                    <a href="" class="menu__link" tabindex = "4">Профиль</a>
+                </div>
+                <img src="{% static 'img/question.svg' %}" alt="" class="menu__img menu__img_margin-88">
+            </div>
+        </div>
+        <div class="page-name">
+            <div class="food-restrictions__title">Изменение диеты</div>
+        </div>
+    </nav>
+    <main>
+        <div class="wrapper">
+                    <div class="food-restrictions">
+                        <a class="food-restrictions__title2" id="myLink">Ссылка</a>
+                    </div>
+                    <div class="food-restrictions2">
+                        <input type="text" class="food-restrictions__string" placeholder="Название ограничения">
+                        <div class="actions__subblock">
+                            <div class="actions__input-block">
+                                <input type="checkbox" class="actions__checkbox" checked name="check_2">
+                                <input type="date" class="actions__date actions__date_margin-28">
+                            </div >
+                            <div class="actions__time">Начало</div>
+                        </div>
+                        <div class="actions__subblock2">
+                            <div class="actions__input-block">
+                                <input type="checkbox" class="actions__checkbox" checked name="check_2">
+                                <input type="date" class="actions__date">
+                            </div >
+                            <div class="actions__time2">Окончание</div>
+                        </div >
+                    </div>
+                    <div class="a">
+                        <img src="{% static '/img/Plus.png' %}" alt="" class="menu__img2">
+                        СВЯЗАННЫЕ ОГРАНИЧЕНИЯ:
+                      </div>
+                    <div class="prohibited-ingredients">
+                        <div class="choise-block">
+                            <div class="food-restrictions3">
+                                <span class="prohibited-ingredients__ingredients2">Запрещённые ингредиенты:</span>
+                                <input type="search" class="food-restrictions__string2" placeholder="Поиск">
+                            </div>
+                            <div class="choise-block__ingredients ingredients-block">
+                                <div class="ingredients-block__category">
+                                    <div class="ingredients-block__main-subblock">
+                                        <a class="Ch">
+                                            <div class="ingredients-block__text-checkbox ">
+                                                <input type="checkbox" class="ingredients-block__checkbox">
+                                                <div type="checkbox" class="ingredients-block__text">Грибы</div>
+                                            </div>
+                                            
+                                        </a>
+                                        <img src="{% static '/img/Arrow.png' %}" alt="arrow" class="ingredients-block__img">
+                                    </div>
+                                    <div class="ingredients-block__subblock subblock-category">
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Грибы приморские</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Грибы Отморские</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Грибы заморские</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ingredients-block__category">
+                                    <div class="ingredients-block__main-subblock">
+                                        <a class="Ch">
+                                            <div class="ingredients-block__text-checkbox">
+                                                <input type="checkbox" class="ingredients-block__checkbox">
+                                                <div type="checkbox" class="ingredients-block__text">Овощи</div>
+                                            </div>
+                                        </a>
+                                        <img src="{% static '/img/Arrow.png' %}" alt="arrow" class="ingredients-block__img">
+                                    </div>
+                                    <div class="ingredients-block__subblock subblock-category">
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Помидор</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Огурец</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Кабачок</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ingredients-block__category">
+                                    <div class="ingredients-block__main-subblock">
+                                        <a class="Ch">
+                                            <div class="ingredients-block__text-checkbox">
+                                                <input type="checkbox" class="ingredients-block__checkbox">
+                                                <div type="checkbox" class="ingredients-block__text">Мясо</div>
+                                            </div>
+                                        </a>
+                                        <img src="{% static '/img/Arrow.png' %}" alt="arrow" class="ingredients-block__img">
+                                    </div>
+                                    <div class="ingredients-block__subblock subblock-category">
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Жирное</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Хрупкое</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Заморское</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ingredients-block__category">
+                                    <div class="ingredients-block__main-subblock">
+                                        <a class="Ch">
+                                            <div class="ingredients-block__text-checkbox">
+                                                <input type="checkbox" class="ingredients-block__checkbox">
+                                                <div type="checkbox" class="ingredients-block__text">Оливки</div>
+                                            </div>
+                                        </a>
+                                        <img src="{% static '/img/Arrow.png' %}" alt="arrow" class="ingredients-block__img">
+                                    </div>
+                                    <div class="ingredients-block__subblock subblock-category">
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Оливки японские</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Оливки Отморские</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Оливки заморские</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Оливки еврейские</div>
+                                            </div>
+                                        </a>
+                                        <a class="Ch">
+                                            <div class="subblock-category__subcategory-block">
+                                                <input type="checkbox" class="subblock-category__checkbox">
+                                                <div type="checkbox" class="subblock-category__text">Оливки пируанские</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="prosmotr_vseh_ogr">
+                        <button name="button" class="button button__text">
+                            Готово
+                        </button> 
+                    </form>               
+        </div>
+        </main>
+        <script src="{% static 'JS/redact_diet.js' %}"></script>
+        <script>
+            // Получение значения параметра 'text' из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const text = urlParams.get('text');
+        
+            // Отображение текста в теге <a>
+            const linkElement = document.getElementById('myLink');
+            linkElement.textContent = text;
+        </script>
+</body>
+</html>
