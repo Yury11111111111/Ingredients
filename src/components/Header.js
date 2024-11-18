@@ -1,35 +1,36 @@
-import '../style/Header.css';
+import '../style/Header.css'
 import Question from '../style/img/question.svg'; 
+import {Link} from 'react-router-dom';
 
 function Header() {
 // Это Header, чего ты тут ожидал?
 
   return (
     <header>
-      <nav class="noselect">
-            <div class="extra-block">
-                <div class="menu">
-                    <div class="menu__title logo-block">
-                        <span class="logo-block__text">Taste</span>
+      <nav className="noselect">
+            <div className="extra-block">
+                <div className="menu">
+                    <div className="menu__title logo-block">
+                        <span className="logo-block__text">Taste</span>
                     </div>
-                    <div class="menu__title">
-                        <a href class="menu__link" tabindex="1">Главная</a>
+                    <div className="menu__title">
+                        <Link to='/' className="menu__link" tabindex="1">Главная</Link>
                     </div>
-                    <div class="menu__title">
-                        <a href class="menu__link" tabindex="2">Архив</a>
+                    <div className="menu__title">
+                        <Link to='/archive' className="menu__link" tabindex="2">Архив</Link>
                     </div>
-                    <div class="menu__title">
-                        <a href class="menu__link" tabindex="3">Редактор</a>
+                    <div className="menu__title">
+                        <Link to='/editor' className="menu__link" tabindex="3">Редактор</Link>
                     </div>
-                    <div class="menu__title">
-                        <a href class="menu__link" tabindex="4">Профиль</a>
+                    <div className="menu__title">
+                        <Link to='/profile' className="menu__link" tabindex="4">Профиль</Link>
                     </div>
                     <img src={Question} alt
-                        class="menu__img menu__img_margin-88">
+                        className="menu__img menu__img_margin-88">
                     </img>
                 </div>
-                <div class="page-name">
-                    <span class="page-name__title">Наименование ограничения</span>
+                <div className="page-name">
+                    <span className="page-name__title">Наименование ограничения</span>
                 </div>
             </div>
         </nav>
