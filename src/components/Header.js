@@ -6,30 +6,30 @@ function Header() {
 
   return (
     <header>
-      <nav class="noselect">
-            <div class="extra-block">
-                <div class="menu">
-                    <div class="menu__title logo-block">
-                        <span class="logo-block__text">Taste</span>
+      <nav className="noselect">
+            <div className="extra-block">
+                <div className="menu">
+                    <div className="menu__title logo-block">
+                        <span className="logo-block__text">Taste</span>
                     </div>
-                    <div class="menu__title">
-                        <a href class="menu__link" tabindex="1">Главная</a>
+                    <div className="menu__title">
+                        <a href className="menu__link" tabindex="1">Главная</a>
                     </div>
-                    <div class="menu__title">
-                        <a href class="menu__link" tabindex="2">Архив</a>
+                    <div className="menu__title">
+                        <a href className="menu__link" tabindex="2">Архив</a>
                     </div>
-                    <div class="menu__title">
-                        <a href class="menu__link" tabindex="3">Редактор</a>
+                    <div className="menu__title">
+                        <a href className="menu__link" tabindex="3">Редактор</a>
                     </div>
-                    <div class="menu__title">
-                        <a href class="menu__link" tabindex="4">Профиль</a>
+                    <div className="menu__title">
+                        <a href className="menu__link" tabindex="4">Профиль</a>
                     </div>
                     <img src={Question} alt
-                        class="menu__img menu__img_margin-88">
+                        className="menu__img menu__img_margin-88">
                     </img>
                 </div>
-                <div class="page-name">
-                    <span class="page-name__title">Наименование ограничения</span>
+                <div className="page-name">
+                    <span className="page-name__title">Наименование ограничения</span>
                 </div>
             </div>
         </nav>
