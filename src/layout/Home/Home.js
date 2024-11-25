@@ -2,7 +2,7 @@
 import Header from '../../components/Header';
 import Arrow from '../../style/img/Arrow.png';
 import { useState, useEffect } from 'react';
-import SelectedIng from './components/Selected_ing';
+import SelectedIng from '../../components/Selected_ing';
 
 function Home() {
   const [ingredients, setIngredients] = useState([
