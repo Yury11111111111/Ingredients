@@ -1,6 +1,6 @@
 import Header from "../../components/Header";
 
-export default function RedactRation() {
+export default function RedactRationM() {
     return (
         <>
         <Header></Header>
