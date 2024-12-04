@@ -1,5 +1,6 @@
-import '../style/Header.css';
+import '../style/Header.css'
 import Question from '../style/img/question.svg'; 
+import {Link} from 'react-router-dom';
 
 function Header() {
 // Это Header, чего ты тут ожидал?
@@ -13,16 +14,18 @@ function Header() {
                         <span className="logo-block__text">Taste</span>
                     </div>
                     <div className="menu__title">
-                        <a href className="menu__link" tabindex="1">Главная</a>
+
+                        <Link to='/' className="menu__link" tabindex="1">Главная</Link>
                     </div>
                     <div className="menu__title">
-                        <a href className="menu__link" tabindex="2">Архив</a>
+                        <Link to='/archive' className="menu__link" tabindex="2">Архив</Link>
                     </div>
                     <div className="menu__title">
-                        <a href className="menu__link" tabindex="3">Редактор</a>
+                        <Link to='/editor' className="menu__link" tabindex="3">Редактор</Link>
                     </div>
                     <div className="menu__title">
-                        <a href className="menu__link" tabindex="4">Профиль</a>
+                        <Link to='/profile' className="menu__link" tabindex="4">Профиль</Link>
+
                     </div>
                     <img src={Question} alt
                         className="menu__img menu__img_margin-88">

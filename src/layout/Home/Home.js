@@ -1,11 +1,7 @@
-import './style/App.css';
-
-import { Route, Routes } from 'react-router-dom';
-import Home from './layout/Home/Home';
-import Archive from './layout/Archive/Archive';
-import Editor from './layout/Editor/Editor';
-import Profile from './layout/Profile/Profile';
-import MainTech from './layout/MainTech/MainTech';
+import Header from '../../components/Header';
+import Arrow from '../../style/img/Arrow.png';
+import { useState, useEffect } from 'react';
+import SelectedIng from '../../components/Selected_ing';
 
 function App() {
   const [ingredients, setIngredients] = useState([
@@ -115,10 +111,10 @@ function App() {
 
         if (isCategoryMatch) {
           acc.push(item);
-        }
+        } 
         if (filteredSubCategories.length === 1) {
           acc.push(filteredSubCategories[0]);
-        }
+        } 
         if (filteredSubCategories.length > 1) {
           acc.push(filteredSubCategories);
         }
@@ -126,9 +122,6 @@ function App() {
       return acc;
     }, []);
   };
-
-  console.log(filterIngredients());
-
 
   return (
     <div className="App">
