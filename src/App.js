@@ -14,8 +14,10 @@ function App() {
 
   const [expandedCategories, setExpandedCategories] = useState({});
   const [checkedCategories, setCheckedCategories] = useState({});
+  const [addIng, setAddIng] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Функция для инициализации состояния checkedCategories
+  // Инициализация состояния checkedCategories
   const fill = () => {
     setCheckedCategories({});
     ingredients.forEach(ing => {
@@ -36,12 +38,10 @@ function App() {
     });
   }
 
-  // Эффект для заполнения состояния при первом рендере
   useEffect(() => {
     fill();
   }, []);
 
-  // Переключение развернутости категории
   const toggleCategory = (category) => {
     setExpandedCategories(prev => ({
       ...prev,
@@ -49,7 +49,6 @@ function App() {
     }));
   };
 
-  // Переключение отметки категории
   const toggleCategoryCheck = (category) => {
     setCheckedCategories(prev => ({
       ...prev,
@@ -59,14 +58,13 @@ function App() {
         subCategorys: checkedCategories[category].subCategorys ? Object.fromEntries(
           Object.entries(prev[category].subCategorys).map(([subCategory, subData]) => [
             subCategory,
-            { ...subData, checked: !checkedCategories[category].checked } // Устанавливаем состояние подкатегорий
+            { ...subData, checked: !checkedCategories[category].checked }
           ])
         ) : {}
       }
     }));
   };
 
-  // Переключение отметки подкатегории
   const toggleSubCategory = (category, subCategory) => {
     setCheckedCategories(prev => {
       const currentCategory = prev[category];
@@ -77,26 +75,21 @@ function App() {
         }
       };
 
-      // Проверяем, сколько подкатегорий отмечено
       const allChecked = Object.values(updatedSubCategories).every(sub => sub.checked);
 
       return {
         ...prev,
         [category]: {
           ...currentCategory,
-          checked: allChecked, // Устанавливаем checked для родительской категории
+          checked: allChecked,
           subCategorys: updatedSubCategories
         }
       };
     });
   };
 
-  // Функция для добавления новой категории
   const addCategory = (categoryName) => {
-    setIngredients([
-      ...ingredients,
-      categoryName
-    ]);
+    setIngredients([...ingredients, categoryName]);
     setCheckedCategories((prev) => ({
       ...prev,
       [categoryName]: {
@@ -106,23 +99,54 @@ function App() {
     }));
   }
 
+  const filterIngredients = () => {
+    return ingredients.reduce((acc, item, index) => {
+      if (typeof item === 'string') {
+        const nextIndex = index + 1;
+        const subCategories = Array.isArray(ingredients[nextIndex]) ? ingredients[nextIndex] : [];
+
+        const isCategoryMatch = item.toLowerCase().includes(searchQuery.toLowerCase());
+        const filteredSubCategories = subCategories.filter(subItem =>
+          subItem.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        if (isCategoryMatch) {
+          acc.push(item);
+        }
+        if (filteredSubCategories.length === 1) {
+          acc.push(filteredSubCategories[0]);
+        }
+        if (filteredSubCategories.length > 1) {
+          acc.push(filteredSubCategories);
+        }
+      }
+      return acc;
+    }, []);
+  };
+
+  console.log(filterIngredients());
+
+
   return (
     <div className="App">
       <Header />
-      {/* Заголовок приложения */}
       <div className="big-title">ОГРАНИЧЕНИЯ по ингредиентам</div>
       <main>
         <div className="wrapper">
           <div className="choise-block">
-            {/* Поле для поиска ингредиентов */}
-            <input type="text" className="choise-block__search" placeholder="Поиск" />
+            <input
+              type="text"
+              className="choise-block__search"
+              placeholder="Поиск"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
             <div className="choise-block__ingredients ingredients-block">
-              {ingredients.map((item, index) => {
+              {filterIngredients().map((item, index) => {
                 if (typeof item === 'string') {
                   return (
                     <div key={index} className="ingredients-block__category">
                       <div className="ingredients-block__main-subblock">
-                        {/* Чекбокс для главной категории */}
                         <div className="ingredients-block__text-checkbox" onClick={() => toggleCategoryCheck(item)}>
                           <input
                             type="checkbox"
@@ -132,22 +156,19 @@ function App() {
                           />
                           <div className="ingredients-block__text">{item}</div>
                         </div>
-                        {/* Кнопка для развертывания подкатегорий */}
-                        {Array.isArray(ingredients[index + 1]) ? (
+                        {Array.isArray(ingredients[ingredients.indexOf(item) + 1]) ? (
                           <img
                             src={Arrow}
                             alt="arrow"
                             className={`ingredients-block__img ${expandedCategories[item] ? 'ingredients-block__img_rotate' : ''}`}
-                            onClick={() => toggleCategory(item)} // Переключение категории
+                            onClick={() => toggleCategory(item)}
                           />
                         ) : null}
                       </div>
-                      {/* Развёрнутые подкатегории */}
-                      {expandedCategories[item] && Array.isArray(ingredients[index + 1]) && (
+                      {expandedCategories[item] && Array.isArray(ingredients[ingredients.indexOf(item) + 1]) && (
                         <div className="ingredients-block__subblock subblock-category">
-                          {ingredients[index + 1].map((subItem, subIndex) => (
+                          {ingredients[ingredients.indexOf(item) + 1].map((subItem, subIndex) => (
                             <div key={subIndex} className="subblock-category__subcategory-block">
-                              {/* Чекбокс для подкатегории */}
                               <input
                                 type="checkbox"
                                 className="subblock-category__checkbox"
@@ -162,17 +183,26 @@ function App() {
                     </div>
                   );
                 }
-                return null; // Если элемент не является строкой, возвращаем null
+                return null;
               })}
             </div>
             <div className="choise-block__line"></div>
-            {/* Кнопка для добавления нового ингредиента */}
-            <div
-              className="choise-block__add-ingredient ingredient-add"
-              onClick={() => addCategory("Суши")} // Добавление нового ингредиента
-            >
-              <div className="ingredient-add__checkbox"></div>
-              <div className="ingredient-add__text">Добавить ингредиент</div>
+            <div className="ingredient-add">
+              <input
+                className="ingredient-add__input"
+                value={addIng}
+                onChange={(e) => setAddIng(e.target.value)}
+              />
+              <div
+                className="choise-block__add-ingredient ingredient-add"
+                onClick={() => {
+                  addCategory(addIng);
+                  setAddIng("");
+                }}
+              >
+                <div className="ingredient-add__checkbox"></div>
+                <div className="ingredient-add__text">Добавить ингредиент</div>
+              </div>
             </div>
           </div>
           <SelectedIng ingredients={ingredients} checkedCategories={checkedCategories} />
@@ -180,6 +210,7 @@ function App() {
       </main>
     </div>
   );
+
 }
 
 export default App;
