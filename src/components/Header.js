@@ -3,7 +3,7 @@ import Question from '../style/img/question.svg';
 import {Link} from 'react-router-dom';
 
 function Header() {
-// Это Header, чего ты тут ожидал?
+    let pageTitle = 'Наименование ограничения'; // TO DO: state manager for changing the page title
 
   return (
     <header>
@@ -14,7 +14,6 @@ function Header() {
                         <span className="logo-block__text">Taste</span>
                     </div>
                     <div className="menu__title">
-
                         <Link to='/' className="menu__link" tabindex="1">Главная</Link>
                     </div>
                     <div className="menu__title">
@@ -32,7 +31,7 @@ function Header() {
                     </img>
                 </div>
                 <div className="page-name">
-                    <span className="page-name__title">Наименование ограничения</span>
+                    {pageTitle}
                 </div>
             </div>
         </nav>

@@ -8,6 +8,10 @@
     overflow-x: hidden;
 }
 
+th, td {
+    border: none;
+}
+
 div * {
     overflow-y: hidden;
 }
