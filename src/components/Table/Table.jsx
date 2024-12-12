@@ -167,6 +167,52 @@ export default function Table() {
                                     <td><input /></td>
                                 </tr>
 
+                                <tr className={styles.dateRow}>
+                                    <td colSpan={8}>
+                                        <span>День 1</span>
+                                        <span>1.06.2021г</span>
+                                    </td>
+                                </tr>
+                                <tr className={styles.pkRow}>
+                                    <th>
+                                        <img src={PNGpencil} alt='' className={styles.icon} />
+                                        <span>ПК1</span>
+                                        <img src={PNGcross} alt='' className={styles.icon} />
+                                    </th>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                </tr>
+                                <tr className={styles.addRow}>
+                                    <th>
+                                        <img src={PNGarrow} className={styles.icon} />
+                                        <span>Добавить</span>
+                                    </th>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                </tr>
+                                <tr className={styles.totalRow}>
+                                    <th>
+                                        <span>Итого:</span>
+                                    </th>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                    <td><input /></td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
