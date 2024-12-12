@@ -2,216 +2,75 @@ import './style/App.css';
 
 import { Route, Routes } from 'react-router-dom';
 import Home from './layout/Home/Home';
-import Archive from './layout/Archive/Archive';
-import Editor from './layout/Editor/Editor';
-import Profile from './layout/Profile/Profile';
+// import Archive from './layout/Archive/Archive';
+// import Editor from './layout/Editor/Editor';
+// import Profile from './layout/Profile/Profile';
 import MainTech from './layout/MainTech/MainTech';
+import AcrhiveTechnology from './layout/ArchiveTechnology/ArchiveTechnology';
+
+import Entrance from './layout/Entrance/Entrance';
+import GlavManager from './layout/GlavManager/GlavManager';
+import IngredientRestructions from './layout/IngredientRestructions/IngredientRestructions';
+import LogDev from './layout/LogDev/LogDev';
+import MedicalRestrictions from './layout/MedicalRestrictions/MedicalRestrictions';
+import ProsmotrVsehOgr from './layout/ProsmotrVsehOgr/ProsmotrVsehOgr';
+import RedactDiet from './layout/RedactDiet/RedactDiet';
+import RedactRationM from './layout/RedactRationM/RedactRationM';
+import BasInfAboutRation from './layout/BasInfAboutRation/BasInfAboutRation';
+import RedactRation from './layout/RedactRation/RedactRation';
+import Redactirovanie from './layout/Redactirovanie/Redactirovanie';
+import Registr from './layout/Registration/Registr';
+import ReligionRestrictions from './layout/ReligionRestrictions/ReligionRestrictions';
+import Restrictions from './layout/Restrictions/Restriction';
+import SozdanieIngredientOgranich from './layout/SozdanieIngredientOgranich/SozdanieIngredientOgranich';
+import SozdanieMedicalOgranich from './layout/SozdanieMedicalOgranich/SozdanieMedicalOgranich';
+import SozdanieOgranichPoIngred from './layout/SozdanieOgranichPoIngred/SozdanieOgranichPoIngred';
+import SozdaniePk from './layout/SozdaniePk/SozdaniePk';
+import SozdanieRation from './layout/SozdanieRation/SozdanieRation';
+import SozdanieRationForPk from './layout/SozdanieRationForPk/SozdanieRationForPk';
+import SozdanieReligionOgranich from './layout/SozdanieReligionOgranich/SozdanieReligionOgranich';
+import SignIn from './layout/SignIn/SignIn';
+
+
 
 function App() {
-  const [ingredients, setIngredients] = useState([
-    "Грибы", ["Грибы приморские", "Грибы Отморские", "Грибы заморские"],
-    "Овощи", ["Помидор", "Огурец", "Кабачок"],
-    "Мясо", ["Жирное", "Хрупкое", "Заморское"],
-    "Оливки", ["Оливки японские", "Оливки Отморские", "Оливки заморские", "Оливки еврейские", "Оливки пируанские"]
-  ]);
-
-  const [expandedCategories, setExpandedCategories] = useState({});
-  const [checkedCategories, setCheckedCategories] = useState({});
-  const [addIng, setAddIng] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  // Инициализация состояния checkedCategories
-  const fill = () => {
-    setCheckedCategories({});
-    ingredients.forEach(ing => {
-      if (typeof ing === 'string') {
-        let nextIngredient = ingredients[ingredients.indexOf(ing) + 1];
-
-        setCheckedCategories((prev) => ({
-          ...prev,
-          [ing]: {
-            checked: false,
-            subCategorys: Array.isArray(nextIngredient) ?
-              Object.fromEntries(nextIngredient.map(next =>
-                [next, { checked: false }]
-              )) : {}
-          }
-        }));
-      }
-    });
-  }
-
-  useEffect(() => {
-    fill();
-  }, []);
-
-  const toggleCategory = (category) => {
-    setExpandedCategories(prev => ({
-      ...prev,
-      [category]: !prev[category],
-    }));
-  };
-
-  const toggleCategoryCheck = (category) => {
-    setCheckedCategories(prev => ({
-      ...prev,
-      [category]: {
-        ...prev[category],
-        checked: !checkedCategories[category].checked,
-        subCategorys: checkedCategories[category].subCategorys ? Object.fromEntries(
-          Object.entries(prev[category].subCategorys).map(([subCategory, subData]) => [
-            subCategory,
-            { ...subData, checked: !checkedCategories[category].checked }
-          ])
-        ) : {}
-      }
-    }));
-  };
-
-  const toggleSubCategory = (category, subCategory) => {
-    setCheckedCategories(prev => {
-      const currentCategory = prev[category];
-      const updatedSubCategories = {
-        ...currentCategory.subCategorys,
-        [subCategory]: {
-          checked: !currentCategory.subCategorys[subCategory].checked
-        }
-      };
-
-      const allChecked = Object.values(updatedSubCategories).every(sub => sub.checked);
-
-      return {
-        ...prev,
-        [category]: {
-          ...currentCategory,
-          checked: allChecked,
-          subCategorys: updatedSubCategories
-        }
-      };
-    });
-  };
-
-  const addCategory = (categoryName) => {
-    setIngredients([...ingredients, categoryName]);
-    setCheckedCategories((prev) => ({
-      ...prev,
-      [categoryName]: {
-        checked: false,
-        subCategorys: {}
-      }
-    }));
-  }
-
-  const filterIngredients = () => {
-    return ingredients.reduce((acc, item, index) => {
-      if (typeof item === 'string') {
-        const nextIndex = index + 1;
-        const subCategories = Array.isArray(ingredients[nextIndex]) ? ingredients[nextIndex] : [];
-
-        const isCategoryMatch = item.toLowerCase().includes(searchQuery.toLowerCase());
-        const filteredSubCategories = subCategories.filter(subItem =>
-          subItem.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-        if (isCategoryMatch) {
-          acc.push(item);
-        }
-        if (filteredSubCategories.length === 1) {
-          acc.push(filteredSubCategories[0]);
-        }
-        if (filteredSubCategories.length > 1) {
-          acc.push(filteredSubCategories);
-        }
-      }
-      return acc;
-    }, []);
-  };
-
-  console.log(filterIngredients());
-
-
   return (
-    <div className="App">
-      <Header />
-      <div className="big-title">ОГРАНИЧЕНИЯ по ингредиентам</div>
-      <main>
-        <div className="wrapper">
-          <div className="choise-block">
-            <input
-              type="text"
-              className="choise-block__search"
-              placeholder="Поиск"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <div className="choise-block__ingredients ingredients-block">
-              {filterIngredients().map((item, index) => {
-                if (typeof item === 'string') {
-                  return (
-                    <div key={index} className="ingredients-block__category">
-                      <div className="ingredients-block__main-subblock">
-                        <div className="ingredients-block__text-checkbox" onClick={() => toggleCategoryCheck(item)}>
-                          <input
-                            type="checkbox"
-                            className="ingredients-block__checkbox"
-                            checked={checkedCategories[item]?.checked || false}
-                            onChange={() => toggleCategoryCheck(item)}
-                          />
-                          <div className="ingredients-block__text">{item}</div>
-                        </div>
-                        {Array.isArray(ingredients[ingredients.indexOf(item) + 1]) ? (
-                          <img
-                            src={Arrow}
-                            alt="arrow"
-                            className={`ingredients-block__img ${expandedCategories[item] ? 'ingredients-block__img_rotate' : ''}`}
-                            onClick={() => toggleCategory(item)}
-                          />
-                        ) : null}
-                      </div>
-                      {expandedCategories[item] && Array.isArray(ingredients[ingredients.indexOf(item) + 1]) && (
-                        <div className="ingredients-block__subblock subblock-category">
-                          {ingredients[ingredients.indexOf(item) + 1].map((subItem, subIndex) => (
-                            <div key={subIndex} className="subblock-category__subcategory-block">
-                              <input
-                                type="checkbox"
-                                className="subblock-category__checkbox"
-                                checked={checkedCategories[item]?.subCategorys[subItem]?.checked || false}
-                                onChange={() => toggleSubCategory(item, subItem)}
-                              />
-                              <div className="subblock-category__text">{subItem}</div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-                return null;
-              })}
-            </div>
-            <div className="choise-block__line"></div>
-            <div className="ingredient-add">
-              <input
-                className="ingredient-add__input"
-                value={addIng}
-                onChange={(e) => setAddIng(e.target.value)}
-              />
-              <div
-                className="choise-block__add-ingredient ingredient-add"
-                onClick={() => {
-                  addCategory(addIng);
-                  setAddIng("");
-                }}
-              >
-                <div className="ingredient-add__checkbox"></div>
-                <div className="ingredient-add__text">Добавить ингредиент</div>
-              </div>
-            </div>
-          </div>
-          <SelectedIng ingredients={ingredients} checkedCategories={checkedCategories} />
-        </div>
-      </main>
-    </div>
+    <Routes>
+      <Route path='/' element={<Home />} />
+
+      {/* <Route path='/archive' element={<Archive />} />
+      <Route path='/editor' element={<Editor />} />
+      <Route path='/profile' element={<Profile />} /> */}
+      <Route path='/tech' element={<MainTech />} />
+
+      <Route path='/ArchiveTechnology' element={<AcrhiveTechnology />} />
+
+      <Route path='/BasInfAboutRation' element={<BasInfAboutRation />} />
+      <Route path='/Entrance' element={<Entrance/>} />
+      <Route path='/GlavManager' element={<GlavManager />} />
+      <Route path='/IngredientRestructions' element={<IngredientRestructions />} />
+      <Route path='/LogDev' element={<LogDev />} />
+      <Route path='/MedicalRestrictions' element={<MedicalRestrictions />} />
+      <Route path='/ProsmotrVsehOgr' element={<ProsmotrVsehOgr />} />
+      <Route path='/RedactDiet' element={<RedactDiet />} />
+      <Route path='/RedactRationM' element={<RedactRationM />} />
+
+      <Route path='/RedactRation' element={<RedactRation />} />
+      <Route path='/Redactirovanie' element={<Redactirovanie/>} />
+      <Route path='/Registration' element={<Registr />} />
+      <Route path='/ReligionRestrictions' element={<ReligionRestrictions />} />
+      <Route path='/Restrictions' element={<Restrictions />} />
+      <Route path='/SozdanieIngredientOgranich' element={<SozdanieIngredientOgranich />} />
+      <Route path='/SozdanieMedicalOgranich' element={<SozdanieMedicalOgranich />} />
+      <Route path='/SozdanieOgranichPoIngred' element={<SozdanieOgranichPoIngred />} />
+      <Route path='/SozdaniePk' element={<SozdaniePk />} />
+      <Route path='/SozdanieRation' element={<SozdanieRation />} />
+      <Route path='/SozdanieRationForPk' element={<SozdanieRationForPk />} />
+      <Route path='/SozdanieReligionOgranich' element={<SozdanieReligionOgranich />} />
+      <Route path='/SignIn' element={<SignIn />} />
+
+
+    </Routes>
   );
 
 }
