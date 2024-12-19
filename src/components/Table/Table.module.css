@@ -27,9 +27,14 @@
     
 }
 
+tbody td {
+    background-color: #F6F6F6;
+}
+
 .table th {
     min-width: 150px;
     width: 20%;
+    background-color: #CCDCE9;
 }
 
 td, th {
@@ -40,6 +45,8 @@ td, th {
     font-size: 20px;
 }
 
+
+
 .thead {
     font-weight: bold;
 }
@@ -47,7 +54,7 @@ td, th {
 .thead td {
     min-width: 120px;
     width: 10%;
-
+    background-color: #CCDCE9;
 }
 
 .table .pkRow th {
@@ -73,8 +80,8 @@ td, th {
     height: 32px;
 }
 
-.table .dateRow {
-    background-color: rgb(165, 197, 255);
+.table .dateRow td {
+    background-color: #A1B7C7;
 }
 
 .table .dateRow span:first-child{
@@ -88,4 +95,8 @@ td, th {
     border: 1px solid gray;
     border-radius: 3px;
     font-size: 16px;
+}
+
+.table .totalRow td {
+    background-color: #CCDCE9;
 }
