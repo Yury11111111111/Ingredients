@@ -202,7 +202,12 @@ function popupButtonFunc(event){
     masIngredients=[]
     for (let index = 0; index < foodComposition.length; index++) {
         if (foodComposition[index].querySelector(".composition-title-field__checkbox").checked==true) {
-            masIngredients.push(foodComposition[index].querySelector(".composition-title-field__text").textContent.replace(/\n/g, '').trim())
+            masIngredients.push(
+                {
+                name: foodComposition[index].querySelector(".composition-title-field__text").textContent.replace(/\n/g, '').trim(),
+                weight: foodComposition[index].querySelector(".weight-cell").value
+                }
+            )
         }
     }
     masSelectedIngredients = []
@@ -211,17 +216,37 @@ function popupButtonFunc(event){
         masSelectedIngredients.push(selectedIngredientsBlock[index].querySelector(".block-select__label").textContent.replace(/\n/g, '').trim());
     }
     masIngredients.reverse()
-    console.log(masSelectedIngredients)
+    console.log(masIngredients[1])
     for (let index = 0; index < masIngredients.length; index++) {
         if (masSelectedIngredients.indexOf(masIngredients[index]) === -1){
-            document.querySelector(".block-select").insertAdjacentHTML("afterbegin",`<div class="block-select__subblock"><input type="checkbox" class="block-select__checkbox" checked onchange="deleteIfNotSelected(this)"><label class="block-select__label">${masIngredients[index]}</label><div class="block-select__value">54,3 гр.</div></div>`)
+            document.querySelector(".block-select").insertAdjacentHTML("afterbegin",`<div class="block-select__subblock"><input type="checkbox" class="block-select__checkbox" checked onchange="deleteIfNotSelected(this)"><label class="block-select__label">${masIngredients[index]["name"]}</label><div class="block-select__value">${masIngredients[index]["weight"]} гр.</div><input type="hidden" name="selectedIngredients" id="selectedIngredients" value="${masIngredients[index]["id"]}"></div>`)
         }
     }
-    console.log('abobus')
+    console.log('abobus') //хахаахахахаахах
     if (document.querySelectorAll(".block-select__subblock").length > 0 && document.querySelector(".thereIsNothing")){
         document.querySelector(".thereIsNothing").remove()
     }
 }
+
+function collectData() {
+    const ings = [];
+    const selected_list = document.querySelectorAll('.block-select__checkbox');
+
+    selected_list.forEach(checkbox => {
+        if (checkbox.checked) {
+            const label = checkbox.nextElementSibling.textContent.trim();
+            const value = checkbox.parentElement.querySelector('.block-select__value').textContent.trim();
+            ings.push(`${label};${value}`);
+        }
+    });
+
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'ingredient_list';
+    hiddenInput.value = ings.join('|');
+    document.getElementById('ingredientForm').appendChild(hiddenInput);
+}
+
 
 function plusFunc(event){
     const masSelectedIngredients = []

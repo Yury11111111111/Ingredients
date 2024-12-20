@@ -27,7 +27,12 @@ DEBUG = True
 if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    '10.102.19.222', 
+    '10.102.70.7',
+    '192.168.1.6'
+    ]
 
 
 # Application definition
@@ -82,12 +87,12 @@ WSGI_APPLICATION = 'ration_of_nutrition.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'chemical_composition',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        # 'USER': 'root',
+        # 'PASSWORD': '',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
     }
 }
 

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .models import ration, composition
-
+from rationapp.models import ration,general,ingredients, composition
+import random
+import string
 form_ration_name = None
 
 def glav_techn_func(request):
@@ -54,25 +55,36 @@ def sozdanie_ration_func(request):
     return render(request,'rationapp/sozdanie_ration.html',context={"form_ration_name":form_ration_name})
 
 def sozdanie_pk_func(request):
+    generals = general.objects.all().prefetch_related("ingredients")
+    ingredient = ingredients.objects.all()
+    context={
+        "generals":generals,
+        "ingredients":ingredient
+    }
     if request.method == 'GET':
-        return render(request,'rationapp/sozdanie_pk.html')
+        return render(request,'rationapp/sozdanie_pk.html', context)
+    elif request.method == 'POST':
+        ings = request.POST.get('ingredient_list', '').replace(' гр.','')
+        ingredient_list = [item.split(';') for item in ings.split('|')]
+
+        characters = string.ascii_letters + string.digits
+        unique_string = ''.join(random.choice(characters) for ch in range(12))
+        
+        while composition.objects.filter(code=unique_string).exists():
+            unique_string = ''.join(random.choice(characters) for ch in range(12))
+        comp = composition()
+        comp.code = unique_string
+        comp.name = request.POST.get("name_pc")
+        comp.description = request.POST.get("description_pc")
+        comp.save()
+
+    return render(request,'rationapp/sozdanie_pk.html', context) #доработать обработку ошибок
 
 def sozdanie_ration_for_pk_func(request):
     return render(request,'rationapp/sozdanie_ration_for_pk.html')
 
-
-def entrance_func(request):
-    return render(request,'rationapp/entrance.html')
-
-def glav_manager_func(request):
-    return render(request,'rationapp/glav_manager.html')
-
 def redact_ration_func(request):
     return render(request,'rationapp/redact_ration.html')
-
-def sozdanie_ogranich_po_ingred_func(request):
-    return render(request,'rationapp/sozdanie_ogranich_po_ingred.html')
-
 
 def vhod_func(request):
     return render(request,'rationapp/vhod.html')
@@ -82,27 +94,3 @@ def arhiv_func(request):
 
 def arhiv_koncretnogo_techn_func(request):
     return render(request,'rationapp/arhiv_koncretnogo_techn.html')
-
-def log_dev_func(request):
-    return render(request,'rationapp/log_dev.html')
-
-def registration_func(request):
-    return render(request,'rationapp/registration.html')
-
-def redact_diet_func(request):
-    return render(request,'rationapp/redact_diet.html')
-
-def redact_ration_m_func(request):
-    return render(request,'rationapp/redact_ration_m.html')
-
-def prosmotr_vseh_ogr_func(request):
-    return render(request,'rationapp/prosmotr_vseh_ogr.html')
-
-def sozdanie_medical_ogranich_func(request):
-    return render(request,'rationapp/sozdanie_medical_ogranich.html')
-
-def sozdanie_religion_ogranich_func(request):
-    return render(request,'rationapp/sozdanie_religion_ogranich.html')
-
-def sozdanie_ingredient_ogranich_func(request):
-    return render(request,'rationapp/sozdanie_ingredient_ogranich.html')

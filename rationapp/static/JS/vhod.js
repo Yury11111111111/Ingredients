@@ -21,9 +21,18 @@ loginButton.addEventListener('click', () => {
             modal.style.display = 'block';
         } else {
             window.location.href = 'maint';
+/*
+        if (username === '' || password === '') {
+            modal.style.display = 'block';
+        } else {
+            window.location.href = 'maint';
+        }
+*/
         }
     });
 
 closeModalButton.addEventListener('click', () => {
     modal.style.display = 'none';
 });
+
+//

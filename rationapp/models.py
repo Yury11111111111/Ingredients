@@ -5,8 +5,6 @@ class general(models.Model):
     code = models.CharField(max_length=255, default=None)
     name = models.CharField(max_length=255, default=None)
     parent = models.CharField(max_length=255, default=None)
-    flag_pc = models.IntegerField(default=None)
-
 class ration(models.Model):
     id_ration = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=60)
@@ -22,9 +20,10 @@ class ration(models.Model):
 class composition(models.Model):
     code = models.CharField(max_length=12, primary_key=True)
     description = models.CharField(max_length=1000)
+    name = models.CharField(max_length=60, unique=True, null=False, default='1')
 
 class ingredients(models.Model):
-    code = models.CharField(max_length=12, primary_key=True)
+    general = models.ForeignKey(general, on_delete=models.CASCADE, related_name='ingredients', null=False, primary_key=True)
     weight = models.FloatField()
     water = models.FloatField()
     protein = models.FloatField()
@@ -59,6 +58,11 @@ class ing_pc(models.Model):
     code_pc = models.CharField(max_length=12)
     weight = models.FloatField()
 
+class pc(models.Model):
+    code = models.CharField(max_length=12, primary_key=True)
+    name = models.CharField(max_length=60, unique=True, null=False, default='1')
+    description = models.CharField(max_length=1000)
+
 class ing_pp(models.Model):
     id_1 = models.IntegerField(primary_key=True)
     id_pp = models.IntegerField()
@@ -69,9 +73,6 @@ class limit(models.Model):
     code = models.CharField(max_length=12, primary_key=True)
     id_ration = models.IntegerField()
 
-class pc(models.Model):
-    code = models.CharField(max_length=12, primary_key=True)
-    description = models.CharField(max_length=1000)
 
 class people(models.Model):
     id_people = models.IntegerField(primary_key=True)
