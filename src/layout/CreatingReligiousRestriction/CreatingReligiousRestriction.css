@@ -1,0 +1,129 @@
+
+.wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.food-restrictions {
+    margin-bottom: 20px;
+}
+
+.food-restrictions__string {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.food-restrictions__title2 {
+    font-size: 20px;
+}
+
+/* Запрещённые ингредиенты */
+.prohibited-ingredients {
+    margin-top: 20px;
+}
+
+.prohibited-ingredients__ingredients2 {
+    font-weight: bold;
+}
+
+.food-restrictions__string2 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Блоки ингредиентов */
+.ingredients-block {
+    margin-top: 15px;
+}
+
+.ingredients-block__category {
+    margin-bottom: 15px;
+}
+
+.ingredients-block__main-subblock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ingredients-block__text-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.ingredients-block__checkbox {
+    margin-right: 10px;
+}
+
+.ingredients-block__text {
+    font-size: 16px;
+}
+
+.ingredients-block__img {
+    width: 15px;
+    height: 15px;
+}
+
+/* Подкатегории */
+.ingredients-block__subblock {
+    margin-left: 20px;
+}
+
+.subblock-category__subcategory-block {
+    display: flex;
+    align-items: center;
+}
+
+.subblock-category__checkbox {
+    margin-right: 10px;
+}
+
+/* Действия */
+.actions {
+    margin-top: 20px;
+}
+
+.actions__subblock {
+    margin-bottom: 15px;
+}
+
+.actions__time {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.actions__input-block {
+    display: flex;
+    align-items: center;
+}
+
+.actions__checkbox {
+    margin-right: 10px;
+}
+
+.actions__date {
+    margin-left: 10px;
+}
+
+/* Кнопка */
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #A1B7C7;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #8a9db0;
+}

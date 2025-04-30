@@ -1,0 +1,98 @@
+.main {
+    margin-top: 50px;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.restrictions {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.restrictions__main-restriction {
+    margin-bottom: 30px;
+}
+
+.restrictions__restriction-christianity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.restrictions__name-restriction {
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s;
+    margin-bottom: 10px;
+}
+
+.restrictions__name-restriction:hover {
+    color: #000;
+}
+
+.restrictions__pen {
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.restrictions__pen:hover {
+    color: #333;
+}
+
+.restrictions__restriction-select {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.restrictions__unit-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.restrictions__units {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.restrictions__unit {
+    margin-right: 0;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.form {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.button {
+    border-radius: 5px;
+    padding: 13px 82px;
+    background-color: #A1B7C7;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #5b7dab;
+}

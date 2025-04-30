@@ -1,0 +1,117 @@
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.food-restrictions,
+.food-restrictions2 {
+    margin-top: 20px;
+}
+
+.actions__date {
+    margin: 0 10px;
+}
+
+.prohibited-ingredients__choice {
+    margin-left: 10px;
+}
+
+.button {
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: right;
+    margin-left: 850px;
+    margin-top: 0;
+    display: block;
+    width: 300px;
+}
+
+button {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    color: hsl(0, 0%, 0%);
+    padding: 13px 82px;
+    background-color: #A1B7C7;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+}
+
+button:hover {
+    color: #FFFFFF;
+}
+
+.choise-block {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: inline-block;
+    width: 600px;
+    height: 100%;
+    padding: 15px;
+}
+
+.selected-ingredients {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: inline-block;
+    width: 400px;
+    height: 100%;
+    vertical-align: top;
+    margin-left: 70px;
+    padding: 15px;
+}
+
+.choise-block__ingredients {
+    margin-top: 15px;
+}
+
+.ingredients-block__category {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.ingredients-block__main-subblock {
+    width: 100%;
+    display: flex;
+}
+
+.ingredients-block__text-checkbox {
+    display: inline-block;
+}
+
+.ingredients-block__checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.ingredients-block__text {
+    display: inline-block;
+    vertical-align: text-top;
+    margin-left: 5px;
+}
+
+.submit-block {
+    margin-top: 30px;
+    text-align: right;
+    margin-bottom: 50px;
+}
+
+.submit-block__button {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    color: white;
+    padding: 13px 82px;
+    background: #A1B7C7;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+}
+
+.submit-block__button:active {
+    box-shadow: inset 0px 0px 35px 5px #5b7dab;
+}

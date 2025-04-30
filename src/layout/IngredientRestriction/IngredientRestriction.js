@@ -2,9 +2,9 @@ import Header from '../../components/Header/Header';
 import Arrow from '../../style/img/Arrow.png';
 import { useState, useEffect } from 'react';
 import SelectedIng from '../../components/Selected_ing';
-import "./IngredientRestructions.css"
+import "./IngredientRestriction.css"
 
-export default function IngredientRestructions() {
+export default function IngredientRestriction() {
   const [ingredients, setIngredients] = useState([
     "Грибы", ["Грибы приморские", "Грибы Отморские", "Грибы заморские"],
     "Овощи", ["Помидор", "Огурец", "Кабачок"],
@@ -209,5 +209,4 @@ export default function IngredientRestructions() {
   );
 
 }
-
 

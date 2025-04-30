@@ -1,0 +1,104 @@
+.main {
+    margin-top: 40px;
+}
+
+.main__wrapper {
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.main__food-restrictions {
+    margin-bottom: 20px;
+}
+
+.main__food-restrictions-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.main__food-restrictions-title {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.main__prohibited-ingredients {
+    display: flex;
+    flex-direction: column;
+}
+
+.main__choise-block {
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.main__prohibited-ingredients-title {
+    font-weight: bold;
+}
+
+.main__food-restrictions-search {
+    border: 1px solid #000;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    padding: 10px;
+}
+
+.ingredients-block__category {
+    margin-top: 10px;
+}
+
+.ingredients-block__main-subblock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ingredients-block__text-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.ingredients-block__checkbox {
+    margin-right: 10px;
+}
+
+.ingredients-block__img {
+    width: 15px;
+    height: 10px;
+}
+
+.subblock-category {
+    margin-left: 25px;
+}
+
+.subblock-category__subcategory-block {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.subblock-category__checkbox {
+    margin-right: 10px;
+}
+
+.main__form {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.main__submit-button {
+    font-size: 25px;
+    padding: 13px 82px;
+    background-color: #A1B7C7;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.main__submit-button:hover {
+    background-color: #5b7dab;
+}

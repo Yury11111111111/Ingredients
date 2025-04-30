@@ -1,0 +1,50 @@
+.main__heading {
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+.main__religions {
+    margin-top: 20px;
+}
+
+.religions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.religions__select {
+    margin-top: 10px;
+}
+
+.unit {
+    margin-left: 20px;
+}
+
+.selected-ingredients {
+    margin-top: 20px;
+}
+
+.selected-ingredients__line {
+    width: 100%;
+    border: 1px solid black;
+    margin: 10px 0;
+}
+
+.settings__active {
+    margin-top: 20px;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #A1B7C7;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #5b7dab;
+}

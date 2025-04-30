@@ -1,0 +1,64 @@
+.wrapper {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.left {
+    font-weight: bold;
+    width: 200px;
+}
+
+.right {
+    flex-grow: 1;
+}
+
+
+
+textarea {
+    resize: none;
+}
+
+.prohibited-ingredients__choice {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.rcheckbox {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #A1B7C7;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #8ca3b5;
+}
+
+.pass-icon {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.pass-icon2 {
+    width: 20px;
+    height: 20px;
+}

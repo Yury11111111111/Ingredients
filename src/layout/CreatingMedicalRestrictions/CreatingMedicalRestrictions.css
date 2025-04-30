@@ -1,0 +1,97 @@
+.wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.food-restrictions {
+    margin-bottom: 20px;
+}
+
+.food-restrictions__string,
+.food-restrictions__string2 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.food-restrictions__title2 {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.prohibited-ingredients {
+    margin-top: 20px;
+}
+
+.choise-block {
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.prohibited-ingredients__ingredients2 {
+    font-weight: bold;
+}
+
+.ingredients-block {
+    margin-top: 15px;
+}
+
+.ingredients-block__category {
+    margin-bottom: 15px;
+}
+
+.ingredients-block__main-subblock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ingredients-block__text-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.ingredients-block__checkbox {
+    margin-right: 10px;
+}
+
+.ingredients-block__text {
+    font-size: 16px;
+}
+
+.ingredients-block__img {
+    width: 15px;
+    height: 15px;
+}
+
+.ingredients-block__subblock {
+    margin-left: 20px;
+}
+
+.subblock-category__subcategory-block {
+    display: flex;
+    align-items: center;
+}
+
+.subblock-category__checkbox {
+    margin-right: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #A1B7C7;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #8a9db0; /* Цвет при наведении */
+}

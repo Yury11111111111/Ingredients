@@ -1,0 +1,121 @@
+main {
+    margin-top: 40px;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.big-title {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 35px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.main-block {}
+
+.choise-block {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: inline-block;
+    width: 600px;
+    height: 100%;
+    padding: 15px;
+}
+
+.selected-ingredients {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    display: inline-block;
+    width: 400px;
+    height: 100%;
+    vertical-align: top;
+    margin-left: 70px;
+    padding: 15px;
+}
+
+.choise-block__search {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    background: url(../../style/img/pencil.png) no-repeat;
+    background-position: 97% center;
+    background-size: 20px 20px;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.choise-block__ingredients {
+    margin-top: 15px;
+}
+
+.ingredients-block {}
+
+.subblock-category__subcategory-block {
+    margin-top: 10px;
+}
+
+.subblock-category__checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.subblock-category__text {
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+.choise-block__line {
+    width: 100%;
+    border: 1px solid black;
+    height: 1px;
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+.submit-block {
+    margin-top: 30px;
+    text-align: right;
+    margin-bottom: 50px;
+}
+
+.submit-block__button {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    color: white;
+    padding: 13px 82px;
+    background: #A1B7C7;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+}
+
+.submit-block__button:active {
+    box-shadow: inset 0px 0px 35px 5px #5b7dab;
+}
+
+button {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    color: hsl(0, 0%, 0%);
+    padding: 13px 82px;
+    background-color: #A1B7C7;
+    border: 1px solid #C4C4C4;
+    border-radius: 5px;
+}
+
+button:hover {
+    color: #FFFFFF; /* Новый цвет текста при наведении курсора */
+}

@@ -1,0 +1,150 @@
+.wrapper {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.food-restrictions {
+    margin-bottom: 20px;
+}
+
+.food-restrictions__title2 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.food-restrictions2 {
+    margin-bottom: 20px;
+}
+
+.food-restrictions__string {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.actions__subblock,
+.actions__subblock2 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.actions__input-block {
+    display: flex;
+    align-items: center;
+}
+
+.actions__checkbox {
+    margin-right: 10px;
+}
+
+.actions__date {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.actions__time,
+.actions__time2 {
+    margin-left: 10px;
+}
+
+.a {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.menu__img2 {
+    margin-right: 10px;
+}
+
+.prohibited-ingredients {
+    margin-top: 20px;
+}
+
+.choise-block {
+    margin-top: 10px;
+}
+
+.food-restrictions3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prohibited-ingredients__ingredients2 {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.food-restrictions__string2 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.ingredients-block {
+    margin-top: 10px;
+}
+
+.ingredients-block__category {
+    margin-top: 15px;
+}
+
+.ingredients-block__main-subblock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ingredients-block__text-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.ingredients-block__checkbox {
+    margin-right: 10px;
+}
+
+.ingredients-block__text {
+    font-weight: normal;
+}
+
+.ingredients-block__img {
+    width: 20px;
+    height: 20px;
+}
+
+.subblock-category {
+    margin-left: 20px;
+}
+
+.subblock-category__subcategory-block {
+    display: flex;
+    align-items: center;
+}
+
+.subblock-category__checkbox {
+    margin-right: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #A1B7C7;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #8ca3b5;
+}
