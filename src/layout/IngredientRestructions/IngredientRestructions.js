@@ -1,8 +1,8 @@
 import Header from '../../components/Header/Header';
 import Arrow from '../../style/img/Arrow.png';
 import { useState, useEffect } from 'react';
-import SelectedIng from '../../components/Selected_ing';
-import "./IngredientRestructions.css"
+import SelectedIngredients from '../../components/SelectedIngredients/SelectedIngredients';
+import "./IngredientRestructions.css";
 
 export default function IngredientRestructions() {
   const [ingredients, setIngredients] = useState([
@@ -17,7 +17,6 @@ export default function IngredientRestructions() {
   const [addIng, setAddIng] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Инициализация состояния checkedCategories
   const fill = () => {
     setCheckedCategories({});
     ingredients.forEach(ing => {
@@ -125,54 +124,57 @@ export default function IngredientRestructions() {
   };
 
   return (
-    <div className="App">
+    <div className="ing-restriction">
       <Header />
-      <div className="big-title">ОГРАНИЧЕНИЯ по ингредиентам</div>
-      <main>
-        <div className="wrapper">
-          <div className="choise-block">
+      <h1 className="ing-restriction__title">ОГРАНИЧЕНИЯ по ингредиентам</h1>
+      <main className="ing-restriction__main">
+        <div className="ing-restriction__wrapper">
+          <div className="ing-restriction__choice-block">
             <input
               type="text"
-              className="choise-block__search"
+              className="ing-restriction__search-input"
               placeholder="Поиск"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <div className="choise-block__ingredients ingredients-block">
+            <div className="ing-restriction__ingredients-list">
               {filterIngredients().map((item, index) => {
                 if (typeof item === 'string') {
                   return (
-                    <div key={index} className="ingredients-block__category">
-                      <div className="ingredients-block__main-subblock">
-                        <div className="ingredients-block__text-checkbox" onClick={() => toggleCategoryCheck(item)}>
+                    <div key={index} className="ing-restriction__category">
+                      <div className="ing-restriction__category-header">
+                        <div 
+                          className="ing-restriction__category-control"
+                          onClick={() => toggleCategoryCheck(item)}
+                        >
                           <input
                             type="checkbox"
-                            className="ingredients-block__checkbox"
+                            className="ing-restriction__category-checkbox"
                             checked={checkedCategories[item]?.checked || false}
                             onChange={() => toggleCategoryCheck(item)}
                           />
-                          <div className="ingredients-block__text">{item}</div>
+                          <span className="ing-restriction__category-name">{item}</span>
                         </div>
                         {Array.isArray(ingredients[ingredients.indexOf(item) + 1]) ? (
                           <img
                             src={Arrow}
                             alt="arrow"
-                            className={`ingredients-block__img ${expandedCategories[item] ? 'ingredients-block__img_rotate' : ''}`}
+                            className={`ing-restriction__category-arrow ${expandedCategories[item] ? 'ing-restriction__category-arrow_rotated' : ''}`}
                             onClick={() => toggleCategory(item)}
                           />
                         ) : null}
                       </div>
                       {expandedCategories[item] && Array.isArray(ingredients[ingredients.indexOf(item) + 1]) && (
-                        <div className="ingredients-block__subblock subblock-category">
+                        <div className="ing-restriction__subcategories">
                           {ingredients[ingredients.indexOf(item) + 1].map((subItem, subIndex) => (
-                            <div key={subIndex} className="subblock-category__subcategory-block">
+                            <div key={subIndex} className="ing-restriction__subcategory">
                               <input
                                 type="checkbox"
-                                className="subblock-category__checkbox"
+                                className="ing-restriction__subcategory-checkbox"
                                 checked={checkedCategories[item]?.subCategorys[subItem]?.checked || false}
                                 onChange={() => toggleSubCategory(item, subItem)}
                               />
-                              <div className="subblock-category__text">{subItem}</div>
+                              <span className="ing-restriction__subcategory-name">{subItem}</span>
                             </div>
                           ))}
                         </div>
@@ -183,31 +185,16 @@ export default function IngredientRestructions() {
                 return null;
               })}
             </div>
-            <div className="choise-block__line"></div>
-            <div className="ingredient-add">
-              <input
-                className="ingredient-add__input"
-                value={addIng}
-                onChange={(e) => setAddIng(e.target.value)}
-              />
-              <div
-                className="choise-block__add-ingredient ingredient-add"
-                onClick={() => {
-                  addCategory(addIng);
-                  setAddIng("");
-                }}
-              >
-                <div className="ingredient-add__checkbox"></div>
-                <div className="ingredient-add__text">Добавить ингредиент</div>
-              </div>
-            </div>
+            <div className="ing-restriction__divider"></div>
+            
           </div>
-          <SelectedIng ingredients={ingredients} checkedCategories={checkedCategories} />
+          <SelectedIngredients 
+            ingredients={ingredients} 
+            checkedCategories={checkedCategories} 
+            className="ing-restriction__selected-ingredients"
+          />
         </div>
       </main>
     </div>
   );
-
 }
-
-

@@ -12,7 +12,6 @@
 
 .main-tech__grid {
   width: 100%;
-  max-width: 1300px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -53,6 +52,7 @@
   text-transform: capitalize;
   padding: 20px;
   margin-top: 10px;
+  margin: 0 auto;
 }
 
 .main-tech__create-card div {
@@ -67,22 +67,8 @@
   transform: scale(1.1);
 }
 
-.main-tech__items {
-  width: 80%;
-  height: 330px;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.main-tech__items::-webkit-scrollbar {
-  display: none;
-}
-
-.main-tech__item-container {
-  position: relative;
-}
-
 .main-tech__item {
+  margin: 0 auto;
   margin-top: 20px;
   width: 80%;
   height: 70px;
@@ -95,6 +81,14 @@
   text-decoration: none;
   transition: all 0.2s ease;
   background: white;
+}
+
+.main-tech__items::-webkit-scrollbar {
+  display: none;
+}
+
+.main-tech__item-container {
+  position: relative;
 }
 
 .main-tech__item:hover {
@@ -117,7 +111,7 @@
   top: 20px;
   right: 0;
   margin: 1% 0;
-  margin-right: 20%;
+  margin-right: 10%;
   background-color: white;
   border: 3px solid black;
   padding: 10px;

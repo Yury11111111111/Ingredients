@@ -224,29 +224,3 @@ form {
 .submit-block__button:active {
     box-shadow: inset 0px 0px 35px 5px #5b7dab;
 }
-
-.button {
-    border-radius: 5px;
-    box-sizing: border-box;
-    text-align: right;
-    margin-left: 850px;
-    margin-top: 0px;
-    display: block;
-    width: 300px;
-}
-
-button {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 25px;
-    line-height: 30px;
-    color: hsl(0, 0%, 0%);
-    padding: 13px 82px;
-    background-color: #A1B7C7;
-    border: 1px solid #C4C4C4;
-    border-radius: 5px;
-}
-
-button:hover {
-    color: #FFFFFF;
-}

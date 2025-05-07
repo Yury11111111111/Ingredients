@@ -1,0 +1,26 @@
+.button-container {
+  margin: 5%;
+}
+
+.button {
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+  padding: 12px 40px;
+  background: #a1b7c7;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: block;
+  text-align: center;
+  color: #fff;
+}
+
+.button:hover {
+  background: #8fa7b9;
+}
+
+.button:active {
+  box-shadow: inset 0px 0px 35px 5px #5b7dab;
+}

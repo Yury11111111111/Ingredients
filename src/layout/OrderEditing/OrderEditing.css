@@ -40,18 +40,6 @@ textarea {
     align-items: center;
 }
 
-.button {
-    padding: 10px 20px;
-    background-color: #A1B7C7;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #8ca3b5;
-}
 
 .pass-icon {
     display: inline-block;

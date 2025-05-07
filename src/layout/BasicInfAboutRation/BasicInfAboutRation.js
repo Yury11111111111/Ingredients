@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../../components/Header/Header";
 import "./BasicInfAboutRation.css";
+import Button from "../../components/Button/Button";
 
 export default function BasicInfAboutRation() {
   const [formData, setFormData] = useState({
@@ -174,16 +175,9 @@ export default function BasicInfAboutRation() {
                 </div>
               </div>
             </div>
-            <div className="basic-inf-about-ration__submit">
-              <button
-                type="submit"
-                className="basic-inf-about-ration__submit-button"
-              >
-                Продолжить
-              </button>
-            </div>
           </form>
         </div>
+        <Button text="Продолжить" />
       </main>
     </>
   );

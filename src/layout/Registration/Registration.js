@@ -1,66 +1,123 @@
+import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
-import "./Registration.css"
+import "./Registration.css";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+import axios from "axios";
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.withCredentials = true;
 
 export default function Registration() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    fio: "",
+    role: "",
+    post: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const registration = () => {
+    axios
+      .post("http://127.0.0.1:8000/ration/registration/", formData, {
+        withCredentials: false,
+      })
+      .then(function (response) {
+        console.log(response);
+
+        setFormData({
+          fio: "",
+          role: "",
+          post: "",
+          email: "",
+          password: "",
+        });
+
+        navigate("/SignIn")
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+  };
+
+  const gotomain = () => {
+    navigate("/");
+  };
+
   return (
     <>
-      <Header />
-      <nav>
-        <div className="page-name">
-          <div className="food-restrictions__title">Регистрация</div>
-        </div>
-      </nav>
-      <main>
-        <div className="wrapper">
-          <div>
-            <img
-              className="c"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGntfrDaO7qA6yme4fN6zkePqXRgwh_LGm0JPl1mUf3jpLYF8oWhjZJS-on2hllsDwGGQ&usqp=CAU"
-              style={{ width: "160px", height: "160px" }}
-              name="picture"
-              id="picture"
-              alt="Profile"
-            />
-          </div>
-          <div className="container">
+      <Header navName={"navEnter"} pageTitle={"Регистрация"} />
+      <main className="registration">
+        <div className="registration__wrapper">
+          <div className="registration__form">
             <input
               type="text"
-              className="p"
+              className="registration__input"
               placeholder="ФИО"
               maxLength="45"
-              name="FIO"
+              name="fio"
               id="FIO"
+              value={formData.fio}
+              onChange={handleInputChange}
             />
             <input
               type="text"
-              className="p"
+              className="registration__input"
               placeholder="Роль"
               maxLength="45"
-              name="Role"
+              name="role"
               id="Role"
+              value={formData.role}
+              onChange={handleInputChange}
             />
             <input
               type="text"
-              className="p"
+              className="registration__input"
               placeholder="Должность"
               maxLength="45"
-              name="Post"
+              name="post"
               id="Post"
+              value={formData.post}
+              onChange={handleInputChange}
             />
             <input
               type="email"
-              className="p"
+              className="registration__input"
               placeholder="Электронная почта"
               maxLength="45"
-              name="Email"
+              name="email"
               id="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+            <input
+              type="password"
+              className="registration__input"
+              placeholder="Пароль"
+              maxLength="45"
+              name="password"
+              id="Password"
+              value={formData.password}
+              onChange={handleInputChange}
             />
           </div>
-          <form action="maint">
-            <div className="container2">
-              <button className="button button-blue">Зарегистрировать</button>
-            </div>
-          </form>
+          <div className="registration__avatar">
+            <img
+              src={require("../../style/img/EmptyAvatar.png")}
+              alt=""
+              className="registration__avatar-image"
+            />
+          </div>
+        </div>
+        <div className="registration__buttons">
+          <Button text={"Зарегестрировать"} onClick={registration} />
+          <Button text={"На главную"} onClick={gotomain} />
         </div>
       </main>
     </>

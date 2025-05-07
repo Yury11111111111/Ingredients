@@ -104,18 +104,3 @@ main {
     box-shadow: inset 0px 0px 35px 5px #5b7dab;
 }
 
-button {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 25px;
-    line-height: 30px;
-    color: hsl(0, 0%, 0%);
-    padding: 13px 82px;
-    background-color: #A1B7C7;
-    border: 1px solid #C4C4C4;
-    border-radius: 5px;
-}
-
-button:hover {
-    color: #FFFFFF; /* Новый цвет текста при наведении курсора */
-}

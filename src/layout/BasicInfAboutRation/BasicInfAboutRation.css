@@ -13,14 +13,12 @@
   padding: 20px;
 }
 
-/* Форма */
 .basic-inf-about-ration__form {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-/* Блоки формы */
 .basic-inf-about-ration__names {
   display: flex;
   justify-content: space-between;
@@ -86,29 +84,4 @@
   outline: none;
 }
 
-/* Кнопка */
-.basic-inf-about-ration__submit {
-  text-align: right;
-  margin-top: 20px;
-}
 
-.basic-inf-about-ration__submit-button {
-  font-weight: 500;
-  font-size: 18px;
-  color: #000;
-  padding: 12px 40px;
-  background: #a1b7c7;
-  border: 1px solid #c4c4c4;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.basic-inf-about-ration__submit-button:hover {
-  background: #8fa7b9;
-  color: #fff;
-}
-
-.basic-inf-about-ration__submit-button:active {
-  box-shadow: inset 0px 0px 35px 5px #5b7dab;
-}

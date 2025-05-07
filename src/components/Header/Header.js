@@ -4,7 +4,7 @@ import Question from "../../style/img/question.svg";
 import { Link } from "react-router-dom";
 import fork from "../../style/img/fork.svg";
 
-export default function Header({ isMeneger, pageTitle = "название рациона" }) {
+export default function Header({ navName, pageTitle = "название рациона" }) {
   const [navMeneger] = useState([
     { name: "Главная", link: "/" },
     { name: "Архив", link: "/archive" },
@@ -18,8 +18,28 @@ export default function Header({ isMeneger, pageTitle = "название рац
     { name: "Профиль", link: "/profile" },
   ]);
 
-  const currentNav = isMeneger ? navMeneger : navTech;
+  const [navEnter] = useState([
+    { name: "Главная", link: "/" },
+    { name: "Рационаы", link: "/CreatingRation" },
+    { name: "О нас", link: "/profile" },
+    { name: "Контакты", link: "/profile" },
+  ]);
 
+  let currentNav;
+
+  switch (navName) {
+    case "navMeneger":
+      currentNav = navMeneger;
+      break;
+    case "navTech":
+      currentNav = navTech;
+      break;
+    case "navEnter":
+      currentNav = navEnter;
+      break;
+    default:
+      currentNav = navMeneger;
+  }
   return (
     <header className="header">
       <div className="header__container">

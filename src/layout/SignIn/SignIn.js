@@ -1,39 +1,18 @@
-import React from 'react';
-import './SignIn.css';
+import React from "react";
+import "./SignIn.css";
+import Header from "../../components/Header/Header";
 
 export default function SignIn() {
   return (
     <div className="sign-in">
-      <nav className="sign-in__nav">
-        <div className="sign-in__menu">
-          <div className="sign-in__logo">
-            <span className="sign-in__logo-text">Taste</span>
-          </div>
-          <div className="sign-in__menu-item">
-            <a href="/" className="sign-in__link" tabIndex="1">Главная</a>
-          </div>
-          <div className="sign-in__menu-item">
-            <a href="/" className="sign-in__link" tabIndex="2">Рационы</a>
-          </div>
-          <div className="sign-in__menu-item">
-            <a href="/" className="sign-in__link" tabIndex="3">О нас</a>
-          </div>
-          <div className="sign-in__menu-item">
-            <a href="/" className="sign-in__link" tabIndex="4">Контакты</a>
-          </div>
-          <img 
-            src="/img/trubka.png" 
-            alt="Иконка" 
-            className="sign-in__menu-icon" 
-          />
-        </div>
-      </nav>
-
+      <div className="sing-in__nav">
+        <Header navName={"navEnter"} />
+      </div>
       <main className="sign-in__main">
         <div className="sign-in__wrapper">
           <div className="sign-in__form">
             <h1 className="sign-in__title">Вход</h1>
-            
+
             <div className="sign-in__input-group">
               <input
                 type="text"
@@ -49,10 +28,10 @@ export default function SignIn() {
                   maxLength="15"
                 />
                 <span className="sign-in__toggle-password">
-                  <img 
-                    src="/img/eye.png" 
-                    alt="Показать пароль" 
-                    className="sign-in__eye-icon" 
+                  <img
+                    src="/img/eye.png"
+                    alt="Показать пароль"
+                    className="sign-in__eye-icon"
                   />
                 </span>
               </div>
@@ -62,8 +41,8 @@ export default function SignIn() {
               <button className="sign-in__button sign-in__button--primary">
                 Войти
               </button>
-              <a 
-                href="/Registration" 
+              <a
+                href="/Registration"
                 className="sign-in__button sign-in__button--secondary"
               >
                 Регистрация

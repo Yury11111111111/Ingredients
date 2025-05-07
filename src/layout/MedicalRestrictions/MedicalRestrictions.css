@@ -24,28 +24,3 @@
     text-align: center;
     padding: 5px 0px;
 }
-
-.button {
-    border-radius: 5px;
-    box-sizing: border-box;
-    text-align: right;
-    display: block;
-    width: 300px;
-    margin-top: 20px;
-}
-
-button {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 25px;
-    line-height: 30px;
-    color: hsl(0, 0%, 0%);
-    padding: 13px 82px;
-    background-color: #A1B7C7;
-    border: 1px solid #C4C4C4;
-    border-radius: 5px;
-}
-
-button:hover {
-    color: #FFFFFF;
-}

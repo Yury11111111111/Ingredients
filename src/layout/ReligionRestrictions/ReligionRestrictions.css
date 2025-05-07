@@ -34,17 +34,3 @@
 .settings__active {
     margin-top: 20px;
 }
-
-.button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #A1B7C7;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #5b7dab;
-}

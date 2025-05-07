@@ -65,10 +65,12 @@ function MainTech() {
                 <div
                   key={`ration-${item.id}`}
                   className="main-tech__item-container"
-                  onMouseEnter={() => setHoveredItem(`ration-${item.id}`)}
-                  onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <Link to={item.link} className="main-tech__item">
+                  <Link to={item.link}
+                    className="main-tech__item"
+                    onMouseEnter={() => setHoveredItem(`ration-${item.id}`)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
                     <div className="main-tech__item-title">{item.title}</div>
                     {hoveredItem === `ration-${item.id}` && (
                       <div className="main-tech__tooltip">
