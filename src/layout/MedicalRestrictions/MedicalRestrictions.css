@@ -1,26 +1,96 @@
-.wrapper {
-    min-height: 100%;
-    overflow: hidden;
-    width: 1300px;
-    margin: 0 auto;
+.med-restriction__title {
+  font-weight: 900;
+  font-size: 35px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin: 30px 0 0 5%;
 }
 
-.block {
-    margin-top: 20px;
+.med-restriction__choice-block {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 400px;
+  margin-left: 10%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.ingredients-block {
-    margin-top: 15px;
+.med-restriction__search-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
 }
 
-.Ch {
+.med-restriction__search-input:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.med-restriction__diseases-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.med-restriction__disease {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.med-restriction__disease:hover {
+  background-color: #f8f9fa;
+}
+
+.med-restriction__disease-control {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.med-restriction__disease-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.med-restriction__disease-name {
+  font-size: 16px;
+  color: #333;
+  flex-grow: 1;
+}
+
+.med-restriction__diseases-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.med-restriction__diseases-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.med-restriction__diseases-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.med-restriction__diseases-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.med-restriction__disease-checkbox:checked + .med-restriction__disease-name {
+  color: #2c7be5;
+  font-weight: 500;
+}
+
+.med-restriction__button {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.selected-ingredients__invisible {
-    margin-top: 10px;
-    text-align: center;
-    padding: 5px 0px;
+    justify-content: end;
 }

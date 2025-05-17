@@ -1,56 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import "./MainTech.css";
 import CreatingRationSvg from "../../style/img/CreatingRationSvg";
 
-function MainTech() {
+import axios from "axios";
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.withCredentials = true;
+
+export default function MainTech() {
   const [hoveredItem, setHoveredItem] = useState(null);
 
-  const rationData = [
-    {
-      id: 1,
-      title: "Зимний сезон",
-      text: "Способ приготовления 1",
-      date: "Dec. 1, 2023",
-      link: "/CreatingRation",
-    },
-    {
-      id: 2,
-      title: "Весенний сезон",
-      text: "Способ приготовления 2",
-      date: "March 2, 2024",
-      link: "/CreatingRation",
-    },
-    {
-      id: 3,
-      title: "Летний сезон",
-      text: "Способ приготовления 3",
-      date: "May 3, 2024",
-      link: "/CreatingRation",
-    },
-    {
-      id: 4,
-      title: "Осенний сезон",
-      text: "Способ приготовления 4",
-      date: "September 4, 2024",
-      link: "/CreatingRation",
-    },
-  ];
+  const [rationData, setRationData] = useState([]);
+  const [compositionsData, setCompositionsData] = useState([]);
 
-  const foodData = [
-    {
-      id: 1,
-      title: "ПК 1",
-      text: "Краткая информация о рационе",
-      date: "",
-      link: "/CreatingPk",
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/main/", {
+        withCredentials: false,
+      })
+      .then((response) => {
+        console.log(response);
+        setRationData(response.data.rations);
+        setCompositionsData(response.data.compositions);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <div className="main-tech">
-      <Header />
+      <Header navName="navTech"/>
       <main className="main-tech__content">
         <div className="main-tech__grid">
           <section className="main-tech__section main-tech__section--ration">
@@ -66,7 +48,8 @@ function MainTech() {
                   key={`ration-${item.id}`}
                   className="main-tech__item-container"
                 >
-                  <Link to={item.link}
+                  <Link
+                    to={item.link}
                     className="main-tech__item"
                     onMouseEnter={() => setHoveredItem(`ration-${item.id}`)}
                     onMouseLeave={() => setHoveredItem(null)}
@@ -98,7 +81,7 @@ function MainTech() {
               </div>
             </Link>
             <div className="main-tech__items-list">
-              {foodData.map((item) => (
+              {compositionsData.map((item) => (
                 <div
                   key={`composition-${item.id}`}
                   className="main-tech__item-container"
@@ -129,5 +112,3 @@ function MainTech() {
     </div>
   );
 }
-
-export default MainTech;

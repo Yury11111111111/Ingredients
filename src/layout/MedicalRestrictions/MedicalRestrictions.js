@@ -1,128 +1,128 @@
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
-import "./MedicalRestrictions.css"
+import Button from "../../components/Button/Button";
+import "./MedicalRestrictions.css";
+
+import axios from "axios";
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.withCredentials = true;
 
 export default function MedicalRestrictions() {
+  const [diseases, setDiseases] = useState([
+    "Сердечно-сосудистые заболевания",
+    "Сахарный диабет",
+    "Гипертония",
+    "Аллергии",
+  ]);
+
+  const [checkedDiseases, setCheckedDiseases] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Инициализируем состояния для всех заболеваний
+  useEffect(() => {
+    const initialChecked = {};
+    diseases.forEach((disease) => {
+      initialChecked[disease] = false;
+    });
+    setCheckedDiseases(initialChecked);
+  }, []);
+
+  const toggleDiseaseCheck = (disease) => {
+    setCheckedDiseases((prev) => ({
+      ...prev,
+      [disease]: !prev[disease],
+    }));
+  };
+
+  const filterDiseases = () => {
+    return diseases.filter((disease) =>
+      disease.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
+  const saveSelectedDiseases = () => {
+    const selected = Object.entries(checkedDiseases)
+      .filter(([_, isChecked]) => isChecked)
+      .map(([disease]) => disease);
+
+    if (selected.length === 0) {
+      alert("Выберите хотя бы одно заболевание");
+      return;
+    }
+
+    const rationName =
+      localStorage.getItem("ration-name") ||
+      prompt("Введите название рациона:");
+
+    if (!rationName) {
+      alert("Название рациона обязательно");
+      return;
+    }
+
+    axios
+      .post(
+        "http://127.0.0.1:8000/ration/restrictions/medical_restrictions/",
+        {
+          diseases: selected,
+          "ration-name": rationName,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken":
+              document.cookie.match(/csrftoken=([^;]+)/)?.[1] || "",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Сохранено:", response.data);
+        alert("Медицинские ограничения успешно сохранены");
+      })
+      .catch((error) => {
+        console.error("Ошибка:", error);
+        alert(error.response?.data?.error || "Ошибка сохранения ограничений");
+      });
+  };
+
   return (
-    <>
-      <Header></Header>
-      <main>
-        <div className="wrapper">
-          <form>
-            <div className="prohibited-ingredients">
-              <form className="tables" method="post">
-                <div id="first" className="block">
-                  <input
-                    className="a poisk"
-                    type="text"
-                    name="text"
-                    placeholder="Поиск болезни"
-                    maxlength="45"
-                  />
-                  <div className="ingredients-block">
-                    <div className="Ch">
-                      <input
-                        className="left right"
-                        type="checkbox"
-                        name="check_1"
-                      />
-                      <label for="check_1">Диабет</label>
-                    </div>
-                    <div className="Ch">
-                      <input
-                        className="left right"
-                        type="checkbox"
-                        name="check_2"
-                      />
-                      <label for="check_2">
-                        Заболевание желудочно-кишечного тракта
-                      </label>
-                    </div>
-                    <div className="Ch">
-                      <input
-                        className="left right"
-                        type="checkbox"
-                        name="check_3"
-                      />
-                      <label for="check_3">Болезнь почек</label>
-                    </div>
-                    <div className="Ch">
-                      <input
-                        className="left right"
-                        type="checkbox"
-                        name="check_4"
-                      />
-                      <label for="check_4">Заболевание 1</label>
-                    </div>
-                    <div className="Ch">
-                      <input
-                        className="left right"
-                        type="checkbox"
-                        name="check_5"
-                      />
-                      <label for="check_5">Заболевание 2</label>
-                    </div>
-                    <div className="Ch">
-                      <input
-                        className="left right"
-                        type="checkbox"
-                        name="check_6"
-                      />
-                      <label for="check_6">Заболевание 3</label>
-                    </div>
-                    <div className="Ch">
-                      <input
-                        className="left right"
-                        type="checkbox"
-                        name="check_7"
-                      />
-                      <label for="check_7">Заболевание 4</label>
-                    </div>
+    <div className="med-restriction">
+      <Header navName="navTech" />
+      <h1 className="med-restriction__title">МЕДИЦИНСКИЕ ОГРАНИЧЕНИЯ</h1>
+      <main className="med-restriction__main">
+        <div className="med-restriction__wrapper">
+          <div className="med-restriction__choice-block">
+            <input
+              type="text"
+              className="med-restriction__search-input"
+              placeholder="Поиск заболеваний"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <div className="med-restriction__diseases-list">
+              {filterDiseases().map((disease, index) => (
+                <div key={index} className="med-restriction__disease">
+                  <div className="med-restriction__disease-control">
+                    <input
+                      type="checkbox"
+                      className="med-restriction__disease-checkbox"
+                      checked={checkedDiseases[disease] || false}
+                      onChange={() => toggleDiseaseCheck(disease)}
+                    />
+                    <span className="med-restriction__disease-name">
+                      {disease}
+                    </span>
                   </div>
                 </div>
-
-                <div id="second" className="block">
-                  <span className="a2">ВЫБРАННЫЕ ОГРАНИЧЕНИЯ:</span>
-                  <div className="ingredients-block">
-                    <div className="selected-ingredients__invisible">
-                      <div className="selected-ingredients__text">
-                        Ничего не выбрано
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div id="third" className="block">
-                  <input
-                    className="a"
-                    type="text"
-                    placeholder="Название болезни"
-                  />
-
-                  <textarea
-                    name="name"
-                    className="b"
-                    id="description"
-                    type="text"
-                    value=""
-                    rows="2"
-                    placeholder="Особенности"
-                  ></textarea>
-                  <button name="button" className="button2 button__text2">
-                    Добавить
-                  </button>
-                </div>
-              </form>
+              ))}
             </div>
-            <a
-              href="javascript:history.back()"
-              name="button"
-              className="button button__text"
-            >
-              Сохранить
-            </a>
-          </form>
+          </div>
         </div>
       </main>
-    </>
+      <div className="med-restriction__button">
+        <Button type="submit" text="Сохранить" onClick={saveSelectedDiseases} />
+      </div>
+    </div>
   );
 }

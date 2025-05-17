@@ -1,36 +1,155 @@
-.main__heading {
-    margin: 20px 0;
-    font-size: 24px;
+.religion-restriction {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.main__religions {
-    margin-top: 20px;
+.religion-restriction__title {
+  font-weight: 900;
+  font-size: 35px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin: 30px 0 0 5%;
 }
 
-.religions {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+.religion-restriction__main {
+  flex: 1;
+  padding: 0 20px;
 }
 
-.religions__select {
-    margin-top: 10px;
+.religion-restriction__wrapper {
+  margin: 0 auto;
+  width: 100%;
 }
 
-.unit {
-    margin-left: 20px;
+.religion-restriction__religions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin: 0 10%;
 }
 
-.selected-ingredients {
-    margin-top: 20px;
+.religion-restriction__religion {
+    width: 33%;
 }
 
-.selected-ingredients__line {
-    width: 100%;
-    border: 1px solid black;
-    margin: 10px 0;
+.religion-restriction__tab {
+  text-align: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s;
+  margin-bottom: 5%;
+  display: flex;
+  padding: 5%;
 }
 
-.settings__active {
-    margin-top: 20px;
+.religion-restriction__tab-maincheckbox {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.religion-restriction__tab:hover {
+  background-color: #e0e0e0;
+}
+
+.religion-restriction__tab-name {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+.religion-restriction__block {
+  padding: 6%;
+  border: 1px solid black;
+  border-radius: 5px;
+  max-width: 400px;
+  background-color: #fff;
+}
+
+.religion-restriction__block-search {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid ;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
+}
+
+.religion-restriction__search-input:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.religion-restriction__restrictions-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.religion-restriction__restriction {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.religion-restriction__restriction:hover {
+  background-color: #f8f9fa;
+}
+
+.religion-restriction__restriction-control {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.religion-restriction__restriction-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.religion-restriction__restriction-name {
+  font-size: 16px;
+  color: #333;
+  flex-grow: 1;
+}
+
+.religion-restriction__restrictions-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.religion-restriction__restrictions-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.religion-restriction__restrictions-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.religion-restriction__restrictions-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.religion-restriction__restriction-checkbox:checked
+  + .religion-restriction__restriction-name {
+  color: #2c7be5;
+  font-weight: 500;
+}
+
+.religion-restriction__button {
+  display: flex;
+  justify-content: end;
+  padding: 20px 40px;
+  background-color: white;
 }

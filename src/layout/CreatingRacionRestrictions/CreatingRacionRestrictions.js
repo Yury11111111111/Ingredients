@@ -35,7 +35,7 @@ export default function CreatingRacionRestrictions() {
 
   return (
     <>
-      <Header />
+      <Header navName="navTech"/>
       <div className="restrictions__title">ОГРАНИЧЕНИЯ</div>
       <main>
         <div className="restrictions">

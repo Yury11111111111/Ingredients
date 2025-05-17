@@ -1,131 +1,205 @@
+import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
+import Button from "../../components/Button/Button";
 import "./ReligionRestrictions.css";
 
+import axios from "axios";
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.withCredentials = true;
+
 export default function ReligionRestrictions() {
+  const [religions, setReligions] = useState([
+    {
+      name: "ХРИСТИАНСТВО",
+      restrictions: ["Пост", "Мясо в постные дни", "Скоромная пища"],
+    },
+    {
+      name: "ИСЛАМ",
+      restrictions: ["Харам", "Алкоголь", "Свинина"],
+    },
+    {
+      name: "ИУДАИЗМ",
+      restrictions: ["Кошерные ограничения", "Мясо с молоком"],
+    },
+  ]);
+
+  const [checkedRestrictions, setCheckedRestrictions] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const initialChecked = {};
+    religions.forEach((religion) => {
+      religion.restrictions.forEach((restriction) => {
+        initialChecked[`${religion.name}-${restriction}`] = false;
+      });
+    });
+    setCheckedRestrictions(initialChecked);
+  }, []);
+
+  const toggleRestrictionMainCheck = (religionName, index) => {
+    let key = `${religionName}`;
+    religions[index].restrictions.forEach((r) => {
+      let subkey = `${religionName}-${r}`;
+      setCheckedRestrictions((prev) => ({
+        ...prev,
+        [subkey]: !prev[subkey],
+      }));
+    });
+    setCheckedRestrictions((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const toggleRestrictionCheck = (religionName, restriction, index) => {
+    let key = `${religionName}-${restriction}`;
+    let subcotegrys = Object.keys(checkedRestrictions).filter((key) =>
+      key.includes(`${religionName}`)
+    );
+    let countOfTrue = subcotegrys.filter(
+      (key) => checkedRestrictions[key] === true
+    ).length;
+    if (subcotegrys.length === countOfTrue) {
+      console.log(countOfTrue);
+    }
+    console.log(subcotegrys.length);
+
+    setCheckedRestrictions((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+    console.log(checkedRestrictions);
+  };
+
+  const filterRestrictions = (religion) => {
+    const filterReligion = religion?.name;
+    if (!filterReligion) return [];
+
+    return filterReligion.restrictions.filter((restriction) =>
+      restriction.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  };
+
+  const saveSelectedRestrictions = () => {
+    const selected = Object.entries(checkedRestrictions)
+      .filter(([_, isChecked]) => isChecked)
+      .map(([key]) => key.split("-"));
+
+    if (selected.length === 0) {
+      alert("Выберите хотя бы одно ограничение");
+      return;
+    }
+
+    const rationName =
+      localStorage.getItem("ration-name") ||
+      prompt("Введите название рациона:");
+
+    if (!rationName) {
+      alert("Название рациона обязательно");
+      return;
+    }
+
+    const formattedRestrictions = selected.map(([religion, restriction]) => ({
+      religion,
+      restriction,
+    }));
+
+    axios
+      .post(
+        "http://127.0.0.1:8000/ration/restrictions/religion_restrictions/",
+        {
+          restrictions: formattedRestrictions,
+          "ration-name": rationName,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken":
+              document.cookie.match(/csrftoken=([^;]+)/)?.[1] || "",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Сохранено:", response.data);
+        alert("Религиозные ограничения успешно сохранены");
+      })
+      .catch((error) => {
+        console.error("Ошибка:", error);
+        alert(error.response?.data?.error || "Ошибка сохранения ограничений");
+      });
+  };
+
   return (
-    <>
-      <Header />
-      <main>
-        <div className="wrapper">
-          <h1 className="main__heading">РЕЛИГИОЗНЫЕ ОГРАНИЧЕНИЯ</h1>
-          <div className="main__religions">
-            <div className="one__religions">
-              <div className="religions">
-                <input type="checkbox" className="checkbox" />
-                ХРИСТИАНСТВО
-              </div>
-              <div className="religions__select" name="block_christianstvo">
-                <div className="search">
+    <div className="religion-restriction">
+      <Header navName="navTech" />
+      <h1 className="religion-restriction__title">РЕЛИГИОЗНЫЕ ОГРАНИЧЕНИЯ</h1>
+      <main className="religion-restriction__main">
+        <div className="religion-restriction__wrapper">
+          <div className="religion-restriction__religions">
+            {religions.map((religion, index) => (
+              <div className="religion-restriction__religion">
+                <div key={index} className={"religion-restriction__tab"}>
                   <input
-                    className="select__input"
-                    type="text"
-                    placeholder="Поиск"
+                    type="checkbox"
+                    className="religion-restriction__tab-maincheckbox"
+                    checked={checkedRestrictions[`${religion.name}`] || false}
+                    onChange={() =>
+                      toggleRestrictionMainCheck(religion.name, index)
+                    }
                   />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="pen"
-                  >
-                    <path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"></path>
-                  </svg>
-                </div>
-                <div className="ingredients-block">
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />
-                    Пост
-                  </div>
-
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />1
-                  </div>
-
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />3
-                  </div>
-
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />3
-                  </div>
-
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />3
-                  </div>
-
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />3
-                  </div>
-
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />3
-                  </div>
-
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />3
-                  </div>
-
-                  <div className="unit Ch">
-                    <input type="checkbox" className="unit__text checkbox1" />3
+                  <div className="religion-restriction__tab-name">
+                    {religion.name}
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="one__religions">
-              <div className="religions">
-                <input type="checkbox" className="checkbox" />
-                ИСЛАМ
-              </div>
-              <div className="religions__select" name="block_islam">
-                <div className="search">
+                <div className="religion-restriction__block">
                   <input
-                    className="select__input2"
                     type="text"
-                    placeholder="Поиск"
+                    className="religion-restriction__block-search"
+                    placeholder={"Поиск"}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="pen"
-                  >
-                    <path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"></path>
-                  </svg>
-                </div>
-                <div className="ingredients-block">
-                  <div className="unit Ch2">
-                    <input type="checkbox" className="unit__text checkbox1" />
-                    Исламский пост
-                  </div>
-
-                  <div className="unit Ch2">
-                    <input type="checkbox" className="unit__text checkbox1" />2
-                  </div>
-
-                  <div className="unit Ch2">
-                    <input type="checkbox" className="unit__text checkbox1" />3
+                  <div className="religion-restriction__restrictions-list">
+                    {religions[index].restrictions.map((restriction, index) => (
+                      <div
+                        key={index}
+                        className="religion-restriction__restriction"
+                      >
+                        <div className="religion-restriction__restriction-control">
+                          <input
+                            type="checkbox"
+                            className="religion-restriction__restriction-checkbox"
+                            checked={
+                              checkedRestrictions[
+                                `${religion.name}-${restriction}`
+                              ] || false
+                            }
+                            onChange={() =>
+                              toggleRestrictionCheck(religion.name, restriction)
+                            }
+                          />
+                          <span className="religion-restriction__restriction-name">
+                            {restriction}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="main__settings">
-            <div className="settings__active">
-              ВЫБРАННЫЕ ОГРАНИЧЕНИЯ:
-              <div className="selected-ingredients">
-                <div className="selected-ingredients__line"></div>
-                <div className="selected-ingredients__invisible">
-                  <div className="selected-ingredients__text">
-                    Ничего не выбрано
-                  </div>
-                </div>
-                <div className="selected-ingredients__line"></div>
-              </div>
-            </div>
-
-            <form action="javascript:history.back()">
-              <button className="e button">Сохранить</button>
-            </form>
+            ))}
           </div>
         </div>
       </main>
-    </>
+      <div className="religion-restriction__button">
+        <Button
+          type="submit"
+          text="Сохранить"
+          onClick={saveSelectedRestrictions}
+        />
+      </div>
+    </div>
   );
 }
