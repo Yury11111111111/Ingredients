@@ -3,7 +3,7 @@
   font-size: 35px;
   letter-spacing: 5px;
   text-transform: uppercase;
-  margin: 30px 0 0 40px;
+  margin: 1% 0 0 5%;
 }
 
 .ing-restriction__main {
@@ -165,4 +165,10 @@
   width: 400px;
   padding: 15px;
   align-self: flex-start;
+}
+
+.ing-restriction__button {
+  display: flex;
+  justify-content: end;
+  margin: 5%;
 }

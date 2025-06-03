@@ -1,19 +1,19 @@
-.ration-for-pk__main {
+.ration__main {
   margin-top: 40px;
   min-height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
 }
-.ration-for-pk__main th {
+.ration__main th {
   border: 1px solid rgb(63, 63, 63);
   margin: 0 10px;
   min-width: 80px;
 }
-.ration-for-pk__main td {
+.ration__main td {
   border: 1px solid rgb(63, 63, 63);
 }
 
-.ration-for-pk__wrapper {
+.ration__wrapper {
   height: 100%;
   width: 100%;
   max-width: 95vw;
@@ -24,83 +24,110 @@
   position: relative;
 }
 
-.ration-for-pk__table-container {
+.ration__table-container {
   flex: 1;
   overflow-y: auto;
   margin-top: 20px;
   border: 1px solid #ddd;
 }
 
-.ration-for-pk__table {
+.ration__table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
 }
 
-.ration-for-pk__table tr {
+.ration__table tr {
   height: 40px;
   min-height: 40px;
 }
 
-.ration-for-pk__table thead {
+.ration__table thead {
   position: sticky;
   top: 0;
   background: white;
   z-index: 10;
 }
 
-.ration-for-pk__title-row {
+.ration__title-row {
   text-align: center;
 }
 
-.ration-for-pk__title-cell {
+.ration__title-cell {
   text-align: center;
   font-weight: bold;
   background-color: #ccdce9;
   font-size: 18px;
 }
 
-.ration-for-pk__title-cell_main {
+.ration__title-cell_main {
   width: 300px;
 }
 
-.ration-for-pk__total-row {
+.ration__total-row {
   background-color: #f9f9f9;
 }
 
-.ration-for-pk__food-composition-total {
+.ration__food-composition-total {
   text-align: left;
   padding-left: 15px;
   background-color: #ccdce9;
   font-size: 20px;
 }
 
-.ration-for-pk__category {
+.ration__category {
   padding-left: 20%;
   background-color: #a1b7c7;
   font-size: 20px;
 }
-.ration-for-pk__ingredient-name {
+.ration__ingredient {
   background-color: #ccdce9;
   padding: 2%;
   font-size: 14px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.ration-for-pk__ingredient-row:hover {
+.reation__ingredient-pencil {
+  height: 13px;
+  margin-right: 5px;
+}
+
+.ration__ingredient-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-grow: 1;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.ration_ingredient-cross {
+  z-index: 10000;
+}
+
+.ration__ingredient-arrow {
+  height: 20px;
+}
+
+.ration__ingredient-empty-space {
+  width: 30px;
+  visibility: hidden;
+}
+
+.ration__ingredient-row:hover {
   background-color: #f5f5f5;
 }
 
-.ration-for-pk__checkbox {
+.ration__checkbox {
   width: 20px;
   height: 20px;
   margin: 10px;
   flex-shrink: 0;
 }
 
-/* Поля ввода */
-.ration-for-pk__table input[type="number"] {
+.ration__table input[type="number"] {
   width: 100%;
   box-sizing: border-box;
   padding: 8px;
@@ -108,12 +135,12 @@
   text-align: center;
 }
 
-.ration-for-pk__table input[type="number"]:disabled {
+.ration__table input[type="number"]:disabled {
   background-color: #f9f9f9;
   color: #555;
 }
 
-.ration-for-pk__button {
+.ration__button {
   display: flex;
   justify-content: end;
   margin: 5%;

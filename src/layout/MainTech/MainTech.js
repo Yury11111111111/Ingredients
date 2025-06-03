@@ -3,68 +3,93 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import "./MainTech.css";
 import CreatingRationSvg from "../../style/img/CreatingRationSvg";
-
 import axios from "axios";
+
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
 
 export default function MainTech() {
   const [hoveredItem, setHoveredItem] = useState(null);
-
   const [rationData, setRationData] = useState([]);
   const [compositionsData, setCompositionsData] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/main/", {
-        withCredentials: false,
-      })
+      .get("http://127.0.0.1:8000/main/")
       .then((response) => {
-        console.log(response);
         setRationData(response.data.rations);
         setCompositionsData(response.data.compositions);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
 
+  // const deleteAllRationsAndCompositions = () => {
+  //   // Сначала удаляем все рационы
+  //   axios
+  //     .delete("http://127.0.0.1:8000/delete-all-rations/", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "X-CSRFToken": document.cookie.match(/csrftoken=([^;]+)/)?.[1] || "",
+  //       },
+  //     })
+  //     .then(() => {
+  //       // После успешного удаления рационов удаляем все PK
+  //       return axios.delete("http://127.0.0.1:8000/delete-all-compositions/", {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "X-CSRFToken":
+  //             document.cookie.match(/csrftoken=([^;]+)/)?.[1] || "",
+  //         },
+  //       });
+  //     })
+  //     .then((response) => {
+  //       console.log("Все PK и рационы успешно удалены", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Ошибка при удалении:", error);
+  //       alert("Произошла ошибка при удалении");
+  //     });
+  // };
+
   return (
     <div className="main-tech">
-      <Header navName="navTech"/>
+      <Header navName="navTech" pageTitle=""/>
       <main className="main-tech__content">
         <div className="main-tech__grid">
           <section className="main-tech__section main-tech__section--ration">
-            <Link to="/CreatingRation" className="main-tech__create-link">
+            <Link to="/BasicInfAboutRation" className="main-tech__create-link">
               <div className="main-tech__create-card">
                 <div>Создать рацион</div>
                 <CreatingRationSvg className="main-tech__create-icon" />
               </div>
             </Link>
             <div className="main-tech__items-list">
-              {rationData.map((item) => (
+              {rationData.map((ration) => (
                 <div
-                  key={`ration-${item.id}`}
+                  key={`ration-${ration.id_ration}`}
                   className="main-tech__item-container"
                 >
                   <Link
-                    to={item.link}
+                    to={`/ration/${ration.id_ration}`}
                     className="main-tech__item"
-                    onMouseEnter={() => setHoveredItem(`ration-${item.id}`)}
+                    onMouseEnter={() =>
+                      setHoveredItem(`ration-${ration.id_ration}`)
+                    }
                     onMouseLeave={() => setHoveredItem(null)}
                   >
-                    <div className="main-tech__item-title">{item.title}</div>
-                    {hoveredItem === `ration-${item.id}` && (
+                    <div className="main-tech__item-title">{ration.name}</div>
+                    {hoveredItem === `ration-${ration.id_ration}` && (
                       <div className="main-tech__tooltip">
                         <div className="main-tech__tooltip-text">
-                          {item.text}
+                          {ration.description}
                         </div>
-                        {item.date && (
-                          <div className="main-tech__tooltip-date">
-                            {item.date}
-                          </div>
-                        )}
+                        <div className="main-tech__tooltip-date">
+                          {ration.date}
+                        </div>
                       </div>
                     )}
                   </Link>
@@ -73,6 +98,7 @@ export default function MainTech() {
             </div>
           </section>
 
+          {/* Секция пищевых композиций */}
           <section className="main-tech__section main-tech__section--composition">
             <Link to="/CreatingPk" className="main-tech__create-link">
               <div className="main-tech__create-card">
@@ -81,25 +107,27 @@ export default function MainTech() {
               </div>
             </Link>
             <div className="main-tech__items-list">
-              {compositionsData.map((item) => (
+              {compositionsData.map((composition) => (
                 <div
-                  key={`composition-${item.id}`}
+                  key={`composition-${composition.code}`}
                   className="main-tech__item-container"
-                  onMouseEnter={() => setHoveredItem(`food-${item.id}`)}
-                  onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <Link to={item.link} className="main-tech__item">
-                    <div className="main-tech__item-title">{item.title}</div>
-                    {hoveredItem === `food-${item.id}` && (
+                  <Link
+                    to={`/composition/${composition.code}`}
+                    className="main-tech__item"
+                    onMouseEnter={() =>
+                      setHoveredItem(`composition-${composition.code}`)
+                    }
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <div className="main-tech__item-title">
+                      {composition.name}
+                    </div>
+                    {hoveredItem === `composition-${composition.code}` && (
                       <div className="main-tech__tooltip">
                         <div className="main-tech__tooltip-text">
-                          {item.text}
+                          {composition.description}
                         </div>
-                        {item.date && (
-                          <div className="main-tech__tooltip-date">
-                            {item.date}
-                          </div>
-                        )}
                       </div>
                     )}
                   </Link>

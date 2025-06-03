@@ -1,4 +1,4 @@
-main {
+/* main {
     margin-top: 40px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -200,7 +200,7 @@ main {
 }
 
 form {
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 .submit-block {
@@ -223,4 +223,4 @@ form {
 
 .submit-block__button:active {
     box-shadow: inset 0px 0px 35px 5px #5b7dab;
-}
+} */

@@ -18,7 +18,7 @@ import OrderEditing from "./layout/OrderEditing/OrderEditing";
 import Registration from "./layout/Registration/Registration";
 import ReligionRestrictions from "./layout/ReligionRestrictions/ReligionRestrictions";
 import CreatingRacionRestrictions from "./layout/CreatingRacionRestrictions/CreatingRacionRestrictions";
-import IngredientRestructions from "./layout/IngredientRestructions/IngredientRestructions";
+import IngredientRestrictions from "./layout/IngredientRestructions/IngredientRestrictions";
 import CreatingMedicalRestrictions from "./layout/CreatingMedicalRestrictions/CreatingMedicalRestrictions";
 import CreatingIngredientRestriction from "./layout/CreatingIngredientRestriction/CreatingIngredientRestriction";
 import CreatingPk from "./layout/CreatingPk/CreatingPk";
@@ -76,8 +76,8 @@ export default function App() {
       <Route path="/BasicInfAboutRation" element={<BasicInfAboutRation />} />
       <Route path="/MainManager" element={<MainManager />} />
       <Route
-        path="/IngredientRestructions"
-        element={<IngredientRestructions />}
+        path="/IngredientRestrictions"
+        element={<IngredientRestrictions />}
       />
       <Route path="/LogDev" element={<LogDev />} />
       <Route path="/MedicalRestrictions" element={<MedicalRestrictions />} />

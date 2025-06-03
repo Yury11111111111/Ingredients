@@ -1,7 +1,7 @@
 .restrictions__title {
   font-size: 30px;
   font-weight: bold;
-  margin-left: 5%;
+  margin: 1% 0 3% 5%;
 }
 
 .restrictions {
@@ -23,6 +23,7 @@
   border-radius: 5px;
   padding: 5%;
   text-align: center;
+  cursor: pointer;
 }
 
 .restrictions__section-title {
@@ -68,22 +69,24 @@
 }
 
 .restrictions__section-options {
-  position: relative;
-  display: inline;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1% 0;
 }
 
 .restrictions__section-checkbox {
-  width: 15px;
-  height: 15px;
+  min-width: 18px;
+  height: 18px;
   margin-left: 6%;
   margin-right: 2%;
 }
 
 .restrictions__section-option {
-  position: absolute;
-  top: 5%;
-  margin-right: 0;
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 10px;
+}
+
+.restrictions__button {
+  display: flex;
+  justify-content: end;
+  margin: 5%;
 }

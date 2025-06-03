@@ -29,7 +29,7 @@ export default function Registration() {
         withCredentials: false,
       })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
 
         setFormData({
           fio: "",
@@ -39,10 +39,10 @@ export default function Registration() {
           password: "",
         });
 
-        navigate("/SignIn")
+        navigate("/SignIn");
       })
       .catch(function (error) {
-        alert(error);
+        console.log(error);
       });
   };
 
@@ -107,17 +107,9 @@ export default function Registration() {
               onChange={handleInputChange}
             />
           </div>
-          <div className="registration__avatar">
-            <img
-              src={require("../../style/img/EmptyAvatar.png")}
-              alt=""
-              className="registration__avatar-image"
-            />
-          </div>
         </div>
-        <div className="registration__buttons">
+        <div className="registration__button">
           <Button text={"Зарегестрировать"} onClick={registration} />
-          <Button text={"На главную"} onClick={gotomain} />
         </div>
       </main>
     </>

@@ -16,7 +16,7 @@
 .basic-inf-about-ration__form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
 }
 
 .basic-inf-about-ration__names {
@@ -85,3 +85,7 @@
 }
 
 
+.basic-inf-about-ration__form-button {
+  display: flex;
+  justify-content: end;
+}

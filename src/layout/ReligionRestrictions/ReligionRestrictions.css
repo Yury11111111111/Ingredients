@@ -9,7 +9,7 @@
   font-size: 35px;
   letter-spacing: 5px;
   text-transform: uppercase;
-  margin: 30px 0 0 5%;
+  margin: 2% 5%;
 }
 
 .religion-restriction__main {
@@ -25,13 +25,13 @@
 .religion-restriction__religions {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 10%;
   margin-bottom: 20px;
-  margin: 0 10%;
+  margin: 0 20%;
 }
 
 .religion-restriction__religion {
-    width: 33%;
+    width: 100%;
 }
 
 .religion-restriction__tab {
@@ -68,7 +68,6 @@
   padding: 6%;
   border: 1px solid black;
   border-radius: 5px;
-  max-width: 400px;
   background-color: #fff;
 }
 

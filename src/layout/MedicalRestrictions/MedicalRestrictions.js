@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import "./MedicalRestrictions.css";
-
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
 
 export default function MedicalRestrictions() {
+  const navigate = useNavigate()
+
+  const rationName = localStorage.getItem("ration-name");
+
   const [diseases, setDiseases] = useState([
     "Сердечно-сосудистые заболевания",
     "Сахарный диабет",
@@ -49,11 +54,7 @@ export default function MedicalRestrictions() {
     if (selected.length === 0) {
       alert("Выберите хотя бы одно заболевание");
       return;
-    }
-
-    const rationName =
-      localStorage.getItem("ration-name") ||
-      prompt("Введите название рациона:");
+    }      
 
     if (!rationName) {
       alert("Название рациона обязательно");
@@ -78,17 +79,16 @@ export default function MedicalRestrictions() {
       )
       .then((response) => {
         console.log("Сохранено:", response.data);
-        alert("Медицинские ограничения успешно сохранены");
+        navigate("/CreatingRacionRestrictions")
       })
       .catch((error) => {
         console.error("Ошибка:", error);
-        alert(error.response?.data?.error || "Ошибка сохранения ограничений");
       });
   };
 
   return (
     <div className="med-restriction">
-      <Header navName="navTech" />
+      <Header navName="navTech" pageTitle={rationName}/>
       <h1 className="med-restriction__title">МЕДИЦИНСКИЕ ОГРАНИЧЕНИЯ</h1>
       <main className="med-restriction__main">
         <div className="med-restriction__wrapper">

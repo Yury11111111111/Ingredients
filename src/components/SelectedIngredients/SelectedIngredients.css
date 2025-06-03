@@ -1,122 +1,119 @@
-/* Основной блок */
 .selected-ingredients {
-    border: 1px solid #000000;
-    border-radius: 5px;
-    padding: 15px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  /* Элементы блока */
-  .selected-ingredients__title {
-    font-size: 20px;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .selected-ingredients__divider {
-    height: 1px;
-    background-color: #000;
-    opacity: 0.7;
-    margin: 10px 0;
-  }
-  
-  .selected-ingredients__category {
-    margin-top: 15px;
-  }
-  
-  .selected-ingredients__category-header {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .selected-ingredients__category-control {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-  }
-  
-  .selected-ingredients__checkbox {
-    width: 20px;
-    height: 20px;
-    appearance: none;
-    border: 1px solid #000;
-    border-radius: 3px;
-    cursor: default;
-    position: relative;
-  }
-  
-  .selected-ingredients__checkbox:checked {
-    background-color: #A1B7C7;
-  }
-  
-  .selected-ingredients__checkbox_partial:checked {
-    background-color: #A1B7C7;
-  }
-  
-  .selected-ingredients__checkbox_partial:checked::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px;
-    height: 2px;
-    background-color: #000;
-  }
-  
-  .selected-ingredients__category-name {
-    margin-left: 5px;
-  }
-  
-  .selected-ingredients__arrow {
-    width: 15px;
-    height: 10px;
-    margin-left: auto;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .selected-ingredients__arrow_rotated {
-    transform: rotate(180deg);
-  }
-  
-  .selected-ingredients__subcategories {
-    margin-top: 10px;
-    padding-left: 25px;
-  }
-  
-  .selected-ingredients__subcategory {
-    display: flex;
-    align-items: center;
-    margin-top: 8px;
-  }
-  
-  .selected-ingredients__subcategory-checkbox {
-    width: 20px;
-    height: 20px;
-    appearance: none;
-    border: 1px solid #000;
-    border-radius: 3px;
-    cursor: default;
-  }
-  
-  .selected-ingredients__subcategory-checkbox:checked {
-    background-color: #A1B7C7;
-  }
-  
-  .selected-ingredients__subcategory-name {
-    margin-left: 5px;
-  }
-  
-  .selected-ingredients__empty {
-    text-align: center;
-    padding: 15px 0;
-  }
-  
-  .selected-ingredients__empty-text {
-    font-size: 18px;
-    color: #666;
-  }
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.selected-ingredients__title {
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.selected-ingredients__divider {
+  height: 1px;
+  background-color: #000;
+  opacity: 0.7;
+  margin: 10px 0;
+}
+
+.selected-ingredients__category {
+  margin-top: 15px;
+}
+
+.selected-ingredients__category-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.selected-ingredients__category-control {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.selected-ingredients__checkbox {
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  border: 1px solid #000;
+  border-radius: 3px;
+  cursor: default;
+  position: relative;
+}
+
+.selected-ingredients__checkbox:checked {
+  background-color: #a1b7c7;
+}
+
+.selected-ingredients__checkbox_partial:checked {
+  background-color: #a1b7c7;
+}
+
+.selected-ingredients__checkbox_partial:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 2px;
+  background-color: #000;
+}
+
+.selected-ingredients__category-name {
+  margin-left: 5px;
+}
+
+.selected-ingredients__arrow {
+  width: 15px;
+  height: 10px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.selected-ingredients__arrow_rotated {
+  transform: rotate(180deg);
+}
+
+.selected-ingredients__subcategories {
+  margin-top: 10px;
+  padding-left: 25px;
+}
+
+.selected-ingredients__subcategory {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.selected-ingredients__subcategory-checkbox {
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  border: 1px solid #000;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.selected-ingredients__subcategory-checkbox:checked {
+  background-color: #a1b7c7;
+}
+
+.selected-ingredients__subcategory-name {
+  margin-left: 5px;
+}
+
+.selected-ingredients__empty {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.selected-ingredients__empty-text {
+  font-size: 18px;
+  color: #666;
+}

@@ -3,12 +3,15 @@ import Header from "../../components/Header/Header";
 import "./BasicInfAboutRation.css";
 import Button from "../../components/Button/Button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
 
 export default function BasicInfAboutRation() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     "ration-name": "",
     "organisation-name": "",
@@ -16,8 +19,136 @@ export default function BasicInfAboutRation() {
     "count-ration-date": "7",
     "count-meal-days": "",
     "calendar-date": "",
+    Season: "",
+    region: "",
     technologist: "",
   });
+
+  const [rationDaysOptions] = useState([
+    { value: "7", label: "7 (1 неделя)" },
+    { value: "14", label: "14 (2 недели)" },
+    { value: "21", label: "21 (3 недели)" },
+    { value: "28", label: "28 (4 недели)" },
+    { value: "35", label: "35 (5 недель)" },
+    { value: "42", label: "42 (6 недель)" },
+    { value: "49", label: "49 (7 недель)" },
+    { value: "56", label: "56 (8 недель)" },
+    { value: "63", label: "63 (9 недель)" },
+    { value: "70", label: "70 (10 недель)" },
+    { value: "77", label: "77 (11 недель)" },
+    { value: "84", label: "84 (12 недель)" },
+    { value: "91", label: "91 (13 недель)" },
+    { value: "98", label: "98 (14 недель)" },
+    { value: "105", label: "105 (15 недель)" },
+    { value: "112", label: "112 (16 недель)" },
+  ]);
+
+  const [mealsPerDayOptions] = useState([
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "4", label: "4" },
+    { value: "5", label: "5" },
+  ]);
+
+  const [seasons] = useState([
+    { value: "winter", label: "Зима" },
+    { value: "spring", label: "Весна" },
+    { value: "summer", label: "Лето" },
+    { value: "autumn", label: "Осень" },
+  ]);
+
+  const [technologists] = useState([
+    { value: "first", label: "Светлана" },
+    { value: "second", label: "Георгий" },
+    { value: "third", label: "Вероника" },
+    { value: "fourth", label: "Владимир" },
+  ]);
+
+  const [regions] = useState([
+    "Белгородская область",
+    "Брянская область",
+    "Владимирская область",
+    "Воронежская область",
+    "Ивановская область",
+    "Калужская область",
+    "Костромская область",
+    "Курская область",
+    "Липецкая область",
+    "Московская область",
+    "Орловская область",
+    "Рязанская область",
+    "Смоленская область",
+    "Тамбовская область",
+    "Тверская область",
+    "Тульская область",
+    "Ярославская область",
+    "г. Москва",
+    "Республика Карелия",
+    "Республика Коми",
+    "Архангельская область",
+    "Вологодская область",
+    "Калининградская область",
+    "Ленинградская область",
+    "Мурманская область",
+    "Новгородская область",
+    "Псковская область",
+    "г. Санкт-Петербург",
+    "Республика Адыгея",
+    "Республика Калмыкия",
+    "Республика Крым",
+    "Краснодарский край",
+    "Астраханская область",
+    "Волгоградская область",
+    "Ростовская область",
+    "г. Севастополь",
+    "Республика Дагестан",
+    "Республика Ингушетия",
+    "Кабардино-Балкарская Республика",
+    "Карачаево-Черкесская Республика",
+    "Республика Северная Осетия – Алания",
+    "Чеченская Республика",
+    "Ставропольский край",
+    "Республика Башкортостан",
+    "Республика Марий Эл",
+    "Республика Мордовия",
+    "Республика Татарстан",
+    "Удмуртская Республика",
+    "Чувашская Республика",
+    "Пермский край",
+    "Кировская область",
+    "Нижегородская область",
+    "Оренбургская область",
+    "Пензенская область",
+    "Самарская область",
+    "Саратовская область",
+    "Ульяновская область",
+    "Курганская область",
+    "Свердловская область",
+    "Тюменская область",
+    "Челябинская область",
+    "Республика Алтай",
+    "Республика Тыва",
+    "Республика Хакасия",
+    "Алтайский край",
+    "Красноярский край",
+    "Иркутская область",
+    "Кемеровская область – Кузбасс",
+    "Новосибирская область",
+    "Омская область",
+    "Томская область",
+    "Республика Бурятия",
+    "Республика Саха (Якутия)",
+    "Забайкальский край",
+    "Камчатский край",
+    "Приморский край",
+    "Хабаровский край",
+    "Амурская область",
+    "Магаданская область",
+    "Сахалинская область",
+    "Еврейская автономная область",
+    "Чукотский автономный округ",
+  ]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,8 +166,10 @@ export default function BasicInfAboutRation() {
         },
       })
       .then((response) => {
-        console.log("Успешно:", response.data);
-        // Перенаправление или другие действия после успешной отправки
+        localStorage.setItem("ration-name", response.data.ration.name);
+        console.log(response);
+        
+        navigate("/CreatingRacionRestrictions");
       })
       .catch((error) => {
         console.error("Ошибка:", error);
@@ -44,13 +177,13 @@ export default function BasicInfAboutRation() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Важно: предотвращаем дефолтное поведение формы (GET)
-    post(); // Вызываем функцию отправки
+    e.preventDefault();
+    post();
   };
 
   return (
     <>
-      <Header navName="navTech"/>
+      <Header navName="navTech" pageTitle="Новый рацион"/>
       <main className="basic-inf-about-ration">
         <div className="basic-inf-about-ration__wrapper">
           <form
@@ -82,7 +215,7 @@ export default function BasicInfAboutRation() {
               <span className="basic-inf-about-ration__description-title">
                 Описание
               </span>
-              <br/>
+              <br />
               <textarea
                 className="basic-inf-about-ration__description-text"
                 placeholder="Описание рациона"
@@ -106,22 +239,11 @@ export default function BasicInfAboutRation() {
                     onChange={handleChange}
                     required
                   >
-                    <option value="7">7 (1 неделя)</option>
-                    <option value="14">14 (2 недели)</option>
-                    <option value="21">21 (3 недели)</option>
-                    <option value="28">28 (4 недели)</option>
-                    <option value="35">35 (5 недель)</option>
-                    <option value="42">42 (6 недель)</option>
-                    <option value="49">49 (7 недель)</option>
-                    <option value="56">56 (8 недель)</option>
-                    <option value="63">63 (9 недель)</option>
-                    <option value="70">70 (10 недель)</option>
-                    <option value="77">77 (11 недель)</option>
-                    <option value="84">84 (12 недель)</option>
-                    <option value="91">91 (13 недель)</option>
-                    <option value="98">98 (14 недель)</option>
-                    <option value="105">105 (15 недель)</option>
-                    <option value="112">112 (16 недель)</option>
+                    {rationDaysOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -137,11 +259,31 @@ export default function BasicInfAboutRation() {
                     required
                   >
                     <option value="">Выберите</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    {mealsPerDayOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="basic-inf-about-ration__select-block">
+                  <span className="basic-inf-about-ration__select-title">
+                    Сезон
+                  </span>
+                  <select
+                    className="basic-inf-about-ration__select"
+                    name="Season"
+                    value={formData["Season"]}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Выберите сезон</option>
+                    {seasons.map((season) => (
+                      <option key={season.value} value={season.value}>
+                        {season.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -173,16 +315,39 @@ export default function BasicInfAboutRation() {
                     required
                   >
                     <option value="">Выберите технолога</option>
-                    <option value="first">Светлана</option>
-                    <option value="second">Георгий</option>
-                    <option value="third">Вероника</option>
-                    <option value="fourth">Владимир</option>
+                    {technologists.map((tech) => (
+                      <option key={tech.value} value={tech.value}>
+                        {tech.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Регион */}
+                <div className="basic-inf-about-ration__select-block">
+                  <span className="basic-inf-about-ration__select-title">
+                    Регион
+                  </span>
+                  <select
+                    className="basic-inf-about-ration__select"
+                    name="region"
+                    value={formData["region"]}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Выберите регион</option>
+                    {regions.map((region, index) => (
+                      <option key={index} value={region}>
+                        {region}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
             </div>
-
-            <Button type="submit" text="Продолжить" onClick={handleSubmit} />
+            <div className="basic-inf-about-ration__form-button">
+              <Button type="submit" text="Продолжить" onClick={handleSubmit} />
+            </div>
           </form>
         </div>
       </main>

@@ -6,21 +6,21 @@ import fork from "../../style/img/fork.svg";
 
 export default function Header({ navName, pageTitle = "название рациона" }) {
   const [navMeneger] = useState([
-    { name: "Главная", link: "/" },
+    { name: "Главная", link: "/MainTech" },
     { name: "Архив", link: "/archive" },
     { name: "Редактор", link: "/" },
     { name: "Профиль", link: "/profile" },
   ]);
 
   const [navTech] = useState([
-    { name: "Главная", link: "/" },
-    { name: "Создание рациона", link: "/CreatingRation" },
+    { name: "Главная", link: "/MainTech" },
+    { name: "Создание рациона", link: "/BasicInfAboutRation" },
     { name: "Профиль", link: "/profile" },
   ]);
 
   const [navEnter] = useState([
-    { name: "Главная", link: "/" },
-    { name: "Рационаы", link: "/CreatingRation" },
+    { name: "Главная", link: "/MainTech" },
+    { name: "Рационы", link: "/CreatingRation" },
     { name: "О нас", link: "/profile" },
     { name: "Контакты", link: "/profile" },
   ]);
