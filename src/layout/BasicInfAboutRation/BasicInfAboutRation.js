@@ -160,7 +160,7 @@ export default function BasicInfAboutRation() {
 
   const post = () => {
     axios
-      .post("http://127.0.0.1:8000/ration/", formData, {
+      .post("http://46.149.68.85:8000/ration/", formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -168,7 +168,7 @@ export default function BasicInfAboutRation() {
       .then((response) => {
         localStorage.setItem("ration-name", response.data.ration.name);
         console.log(response);
-        
+
         navigate("/CreatingRacionRestrictions");
       })
       .catch((error) => {
@@ -183,13 +183,21 @@ export default function BasicInfAboutRation() {
 
   return (
     <>
-      <Header navName="navTech" pageTitle="Новый рацион"/>
+      <Header navName="navTech" pageTitle="Новый рацион" />
       <main className="basic-inf-about-ration">
         <div className="basic-inf-about-ration__wrapper">
           <form
             className="basic-inf-about-ration__form"
             onSubmit={handleSubmit}
           >
+            <div className="basic-inf-about-ration__titles">
+              <span className="basic-inf-about-ration__description-title">
+                Название рациона
+              </span>
+              <span className="basic-inf-about-ration__description-title second-child">
+                Организация заказчика
+              </span>
+            </div>
             <div className="basic-inf-about-ration__names">
               <input
                 type="text"

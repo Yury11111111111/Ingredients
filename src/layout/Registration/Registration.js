@@ -25,7 +25,7 @@ export default function Registration() {
 
   const registration = () => {
     axios
-      .post("http://127.0.0.1:8000/ration/registration/", formData, {
+      .post("http://46.149.68.85:8000/ration/registration/", formData, {
         withCredentials: false,
       })
       .then(function (response) {

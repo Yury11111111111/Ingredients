@@ -19,6 +19,12 @@
   gap: 10px;
 }
 
+.basic-inf-about-ration__titles{
+  width: 88.5%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .basic-inf-about-ration__names {
   display: flex;
   justify-content: space-between;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import "./CreatingPk.css";
@@ -10,7 +10,8 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
 
 export default function CreatingPk() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name_pc: "",
     description_pc: "",
@@ -25,7 +26,17 @@ export default function CreatingPk() {
     }));
   };
 
-  const post = () => {
+  useEffect(() => {
+    localStorage.setItem("backToRation", "true");
+    return () => {
+      if (!localStorage.getItem("newPK")) {
+        localStorage.removeItem("backToRation");
+      }
+    };
+  }, []);
+
+  const post = (e) => {
+    e.preventDefault();
     axios
       .post("http://127.0.0.1:8000/pk/create/", formData, {
         headers: {
@@ -33,19 +44,27 @@ export default function CreatingPk() {
         },
       })
       .then((response) => {
-        console.log(response.data);
-        navigate("/MainTech")
+        // Сохраняем данные перед навигацией
+        const newPKData = {
+          name_pc: formData.name_pc,
+          ...response.data,
+        };
+        localStorage.setItem("newPK", JSON.stringify(newPKData));
+
+        // Добавляем небольшую задержку перед навигацией
+        setTimeout(() => {
+          navigate("/CreatingRation");
+        }, 100);
       })
       .catch((error) => {
         console.error(error);
+        localStorage.removeItem("backToRation");
       });
   };
 
-  
-
   return (
     <>
-      <Header navName="navTech" pageTitle=""/>
+      <Header navName="navTech" pageTitle="" />
       <div className="creating-pk">
         <main className="creating-pk__main">
           <form
@@ -54,9 +73,10 @@ export default function CreatingPk() {
             className="creating-pk__form"
             action="/"
             id="newPKForm"
+            onSubmit={post}
           >
             <div className="creating-pk__name-block">
-            <div className="creating-pk__description-title">НАЗВАНИЕ ПК</div>
+              <div className="creating-pk__description-title">НАЗВАНИЕ ПК</div>
               <input
                 type="text"
                 className="creating-pk__name-input"
@@ -64,6 +84,7 @@ export default function CreatingPk() {
                 name="name_pc"
                 value={formData["name_pc"]}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="creating-pk__description-block">
@@ -81,7 +102,7 @@ export default function CreatingPk() {
                 to="/CreatingRationForPk"
                 className="creating-pk__ingredients-add"
               >
-                Выбрать ингредиенты
+                Выбрать ингредиенты +
               </Link>
             </div>
             <div className="creating-pk__selected-block">
@@ -104,11 +125,11 @@ export default function CreatingPk() {
                 </div>
               </div>
             </div>
+            <div className="creating-pk__submit-block">
+              <Button type="submit" text="Продолжить" />
+            </div>
           </form>
         </main>
-        <div className="creating-pk__submit-block">
-          <Button text="Продолжить" onClick={post} />
-        </div>
       </div>
     </>
   );

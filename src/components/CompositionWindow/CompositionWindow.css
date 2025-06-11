@@ -1,0 +1,100 @@
+/* CompositionWindow.css */
+.composition-window {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  z-index: 1000000000;
+  user-select: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.composition-window__choice-block {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 400px;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.composition-window__ingredients-list {
+  margin-top: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.composition-window__category {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.composition-window__category:last-child {
+  border-bottom: none;
+}
+
+.composition-window__category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.composition-window__category-control {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.composition-window__checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.composition-window__category-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.composition-window__subcategories {
+  margin-top: 10px;
+  padding-left: 30px;
+}
+
+.composition-window__subcategory {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.composition-window__subcategory-name {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.composition-window__button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.composition-window__button {
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+  padding: 8px 25px;
+  background: #4a90e2;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.composition-window__button:hover {
+  background: #3a7bc8;
+}

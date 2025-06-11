@@ -1,0 +1,102 @@
+.ingredient-window {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  z-index: 100000000;
+  user-select: none;
+}
+
+.ingredient-window__choice-block {
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 400px;
+  padding: 15px;
+}
+
+.ingredient-window__search-input {
+  border: 1px solid #000;
+  border-radius: 5px;
+  height: 35px;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  background: url(../../style/img/pencil.png) no-repeat 97% center/20px 20px;
+}
+
+.ingredient-window__ingredients-list {
+  margin-top: 15px;
+  max-height: 300px;
+  overflow-y: auto; 
+  overflow-x: hidden;
+}
+
+.ingredient-window__category {
+  margin-top: 10px;
+}
+
+.ingredient-window__category-header {
+  display: flex;
+  align-items: center;
+}
+
+.ingredient-window__category-control {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.ingredient-window__checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.ingredient-window__category-name {
+  font-weight: bold;
+}
+
+.ingredient-window__arrow {
+  width: 15px;
+  height: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.ingredient-window__arrow_rotated {
+  transform: rotate(180deg);
+}
+
+.ingredient-window__subcategories {
+  margin-top: 5px;
+  padding-left: 25px;
+}
+
+.ingredient-window__subcategory {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.ingredient-window__subcategory-name {
+  margin-left: 5px;
+}
+
+.ingredient-window__button-container {
+  display: flex;
+  justify-content: end;
+}
+
+.ingredient-window__button {
+  font-weight: 500;
+  font-size: 12px;
+  color: #000;
+  padding: 6px 20px;
+  margin: 1%;
+  background: #a1b7c7;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  color: #fff;
+}

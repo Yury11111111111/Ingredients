@@ -45,7 +45,7 @@ export default function SignIn() {
     }
 
     axios
-      .post("http://127.0.0.1:8000/vhod/", formData, {
+      .post("http://46.149.68.85:8000/vhod/", formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -57,6 +57,8 @@ export default function SignIn() {
       .catch((error) => {
         setErrorMessage("Неверный логин или пароль");
         setShowErrorModal(true);
+        console.log(error);
+        
       });
   };
 

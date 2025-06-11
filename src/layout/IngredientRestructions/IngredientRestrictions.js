@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import Header from "../../components/Header/Header";
 import Arrow from "../../style/img/Arrow.png";
 import SelectedIngredients from "../../components/SelectedIngredients/SelectedIngredients";
@@ -13,95 +13,98 @@ axios.defaults.withCredentials = true;
 
 export default function IngredientRestrictions() {
   const navigate = useNavigate();
-
   const rationName = localStorage.getItem("ration-name");
 
   const [categories, setCategories] = useState([
     {
+      id: 1,
       name: "Грибы",
       enable: false,
       expanded: false,
       ingredients: [
-        { name: "Грибы приморские", enable: false },
-        { name: "Грибы Отморские", enable: false },
-        { name: "Грибы заморские", enable: false },
+        { id: 1, name: "Грибы приморские", enable: false },
+        { id: 2, name: "Грибы Отморские", enable: false },
+        { id: 3, name: "Грибы заморские", enable: false },
       ],
     },
     {
+      id: 2,
       name: "Овощи",
       enable: false,
       expanded: false,
       ingredients: [
-        { name: "Помидор", enable: false },
-        { name: "Огурец", enable: false },
-        { name: "Кабачок", enable: false },
+        { id: 4, name: "Помидор", enable: false },
+        { id: 5, name: "Огурец", enable: false },
+        { id: 6, name: "Кабачок", enable: false },
       ],
     },
     {
+      id: 3,
       name: "Мясо",
       enable: false,
       expanded: false,
       ingredients: [
-        { name: "Жирное", enable: false },
-        { name: "Хрупкое", enable: false },
-        { name: "Заморское", enable: false },
+        { id: 7, name: "Жирное", enable: false },
+        { id: 8, name: "Хрупкое", enable: false },
+        { id: 9, name: "Заморское", enable: false },
       ],
     },
     {
+      id: 4,
       name: "Оливки",
       enable: false,
       expanded: false,
       ingredients: [
-        { name: "Оливки японские", enable: false },
-        { name: "Оливки Отморские", enable: false },
-        { name: "Оливки заморские", enable: false },
-        { name: "Оливки еврейские", enable: false },
-        { name: "Оливки пируанские", enable: false },
+        { id: 10, name: "Оливки японские", enable: false },
+        { id: 11, name: "Оливки Отморские", enable: false },
+        { id: 12, name: "Оливки заморские", enable: false },
+        { id: 13, name: "Оливки еврейские", enable: false },
+        { id: 14, name: "Оливки пируанские", enable: false },
       ],
     },
   ]);
 
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleCheckboxChange = useCallback((categoryIndex, ingredientIndex) => {
+  const handleCheckboxChange = useCallback((categoryId, ingredientId) => {
     setCategories((prevCategories) => {
-      const updatedCategories = [...prevCategories];
-
-      if (ingredientIndex === null) {
-        const newEnableState = !updatedCategories[categoryIndex].enable;
-        updatedCategories[categoryIndex] = {
-          ...updatedCategories[categoryIndex],
-          enable: newEnableState,
-          ingredients: updatedCategories[categoryIndex].ingredients.map(
-            (ingredient) => ({
-              ...ingredient,
+      return prevCategories.map((category) => {
+        if (category.id === categoryId) {
+          if (ingredientId === null) {
+            const newEnableState = !category.enable;
+            return {
+              ...category,
               enable: newEnableState,
-            })
-          ),
-        };
-      } else {
-        updatedCategories[categoryIndex].ingredients[ingredientIndex] = {
-          ...updatedCategories[categoryIndex].ingredients[ingredientIndex],
-          enable:
-            !updatedCategories[categoryIndex].ingredients[ingredientIndex]
-              .enable,
-        };
+              ingredients: category.ingredients.map((ingredient) => ({
+                ...ingredient,
+                enable: newEnableState,
+              })),
+            };
+          } else {
+            const updatedIngredients = category.ingredients.map(
+              (ingredient) => {
+                if (ingredient.id === ingredientId) {
+                  return {
+                    ...ingredient,
+                    enable: !ingredient.enable,
+                  };
+                }
+                return ingredient;
+              }
+            );
 
-        const allEnabled = updatedCategories[categoryIndex].ingredients.every(
-          (ing) => ing.enable
-        );
-        const anyDisabled = updatedCategories[categoryIndex].ingredients.some(
-          (ing) => !ing.enable
-        );
+            const allEnabled = updatedIngredients.every((ing) => ing.enable);
+            const anyDisabled = updatedIngredients.some((ing) => !ing.enable);
 
-        updatedCategories[categoryIndex].enable = allEnabled
-          ? true
-          : anyDisabled
-          ? false
-          : updatedCategories[categoryIndex].enable;
-      }
-
-      return updatedCategories;
+            return {
+              ...category,
+              ingredients: updatedIngredients,
+              enable: allEnabled ? true : anyDisabled ? false : category.enable,
+            };
+          }
+        }
+        return category;
+      });
     });
   }, []);
 
@@ -207,10 +210,7 @@ export default function IngredientRestrictions() {
               />
               <div className="ing-restriction__ingredients-list">
                 {filterCategories().map((category, categoryIndex) => (
-                  <div
-                    key={categoryIndex}
-                    className="ing-restriction__category"
-                  >
+                  <div key={category.id} className="ing-restriction__category">
                     <div className="ing-restriction__category-header">
                       <div className="ing-restriction__category-control">
                         <input
@@ -218,7 +218,7 @@ export default function IngredientRestrictions() {
                           className="ing-restriction__category-checkbox"
                           checked={category.enable}
                           onChange={() =>
-                            handleCheckboxChange(categoryIndex, null)
+                            handleCheckboxChange(category.id, null)
                           }
                         />
                         <span className="ing-restriction__category-name">
@@ -240,29 +240,24 @@ export default function IngredientRestrictions() {
                     </div>
                     {category.expanded && (
                       <div className="ing-restriction__subcategories">
-                        {category.ingredients.map(
-                          (ingredient, ingredientIndex) => (
-                            <div
-                              key={ingredientIndex}
-                              className="ing-restriction__subcategory"
-                            >
-                              <input
-                                type="checkbox"
-                                className="ing-restriction__subcategory-checkbox"
-                                checked={ingredient.enable}
-                                onChange={() =>
-                                  handleCheckboxChange(
-                                    categoryIndex,
-                                    ingredientIndex
-                                  )
-                                }
-                              />
-                              <span className="ing-restriction__subcategory-name">
-                                {ingredient.name}
-                              </span>
-                            </div>
-                          )
-                        )}
+                        {category.ingredients.map((ingredient) => (
+                          <div
+                            key={ingredient.id}
+                            className="ing-restriction__subcategory"
+                          >
+                            <input
+                              type="checkbox"
+                              className="ing-restriction__subcategory-checkbox"
+                              checked={ingredient.enable}
+                              onChange={() =>
+                                handleCheckboxChange(category.id, ingredient.id)
+                              }
+                            />
+                            <span className="ing-restriction__subcategory-name">
+                              {ingredient.name}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     )}
                   </div>
